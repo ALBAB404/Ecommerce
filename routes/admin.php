@@ -1,9 +1,10 @@
 <?php
-
 use App\Http\Controllers\{
     adminAuthenticateController,
-    AdminController
+    AdminController,
+    CategoryController
 };
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +24,26 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     // Admin
 
-    Route::controller(AdminController::class)->group(function(){
+    Route::controller(AdminController::class)->middleware('can:isSuper_admin')->group(function(){
         route::get('/', 'index')->name('index');
         route::get('/create', 'create')->name('create');
         route::post('/store', 'store')->name('store');
         route::get('/show/{admin}', 'show')->name('show');
         route::get('/edit/{admin}', 'edit')->name('edit');
+        route::post('/update/{admin}', 'update')->name('update');
+        route::post('/delete/{admin}', 'destroy')->name('delete');
     });
 
-    // Route::resource('', AdminController::class);
+    // Category
+
+    Route::controller(CategoryController::class)->name('category.')->prefix('category')->group(function(){
+        route::get('/all', 'all')->name('all');
+        route::get('/', 'create')->name('create');
+        route::post('/store', 'store')->name('store');
+    });
+
+
+
 
     // authentication
 

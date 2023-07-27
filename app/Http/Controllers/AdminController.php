@@ -6,6 +6,7 @@ use App\Http\Requests\adminAuthRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -46,7 +47,10 @@ class AdminController extends Controller
             'role' => $request->role,
         ]);
 
+
+
         if($admin){
+            Session::flash('success', 'Data inserted successfully.');
             return redirect()->route('admin.index');
         }
 
@@ -66,7 +70,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        dd($admin);
+        return view('backend.admin.modules.edit', compact('admin'));
     }
 
     /**
@@ -74,7 +78,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => "required|unique:admins,email,$admin->id",
+            'role' => 'required',
+            'status' => 'required',
+        ]);
+
+
+        $admin = $admin->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'status' => $request->status,
+        ]);
+
+        if($admin){
+            Session::flash('info', 'Data Updated successfully.');
+            return redirect()->route('admin.index');
+        }
     }
 
     /**
@@ -82,7 +104,10 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        $admin->delete();
+        Session::flash('error', 'Data Deleted successfully.');
+        return redirect()->route('admin.index');
+
     }
 
 

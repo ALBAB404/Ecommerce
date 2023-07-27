@@ -6,6 +6,7 @@ use App\Http\Requests\adminAuthRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class adminAuthenticateController extends Controller
 {
@@ -17,8 +18,14 @@ class adminAuthenticateController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::ADMIN);
-    }
+        if(auth()->user()->status){
+            Session::flash('success', 'Login Successfully');
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        }else{
+            Session::flash('warning', 'Your Account Is Right Now Inactive Please Contact Admin');
+            return back();
+        }
+     }
 
     public function logout(Request $request)
     {
@@ -27,7 +34,7 @@ class adminAuthenticateController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        Session::flash('info', 'Logout');
         return redirect()->route('admin.login');
     }
 }

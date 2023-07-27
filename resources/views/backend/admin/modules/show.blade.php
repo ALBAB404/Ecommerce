@@ -21,7 +21,11 @@
                  </tr>
                     <tr>
                          <th>Role</th>
-                         <td>{{ $admin->role }}</td>
+                         <td>
+                            <span class="badge {{ $admin->role === 'User' ? 'bg-label-danger' : 'bg-label-warning' }} me-1">
+                        {{ $admin->role }}
+                    </span>
+                        </td>
                  </tr>
                     <tr>
                          <th>Status</th>

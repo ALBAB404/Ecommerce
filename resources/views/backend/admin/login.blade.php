@@ -85,23 +85,39 @@
               <!-- /Logo -->
               <h4 class="mb-2">Welcome to Sneat! 👋</h4>
               <p class="mb-4">Please sign-in to your account and start the adventure</p>
-
-
-
-              {!! Form::open(['method'=>'post','route'=>'admin.authenticate','id'=>'formAuthentication','class'=>'mb-3']) !!}
+              <form id="formAuthentication" class="mb-3" action="{{ route('admin.authenticate') }}" method="POST">
+                @csrf
+              {{-- {!! Form::open(['method'=>'post','route'=>'admin.authenticate','id'=>'formAuthentication','class'=>'mb-3']) !!} --}}
                   <div class="mb-3">
-                      {!! Form::label('email', 'Email', ['class'=>'form-label']) !!}
-                      {!! Form::text('email', null, ['id'=>'email','class'=>'form-control','placeholder'=>'Enter your email']) !!}
+                    <label for="email" class="form-label">Email or Username</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    placeholder="Enter your email or username"
+                    autofocus
+                  />
+                      {{-- {!! Form::text('email', old('email'), ['id'=>'email','class'=>'form-control','placeholder'=>'Enter your email']) !!} --}}
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
-                    {!! Form::label('password', 'Password', ['class'=>'form-label']) !!}
+                    <label class="form-label" for="password">Password</label>
                     <a href="">
                       <small>Forgot Password?</small>
                     </a>
                   </div>
                   <div class="input-group input-group-merge">
-                    {!! Form::text('password', null, ['id'=>'password','aria-describedby'=>'password','class'=>'form-control','placeholder'=>'&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) !!}
+                    <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    aria-describedby="password"
+                  />
+                    {{-- {!! Form::text('password', null, ['id'=>'password','aria-describedby'=>'password','class'=>'form-control','placeholder'=>'&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;']) !!} --}}
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
@@ -112,7 +128,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                    {!! Form::submit('Sign in', ['class'=>'btn btn-primary d-grid w-100']) !!}
+                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
               </form>
 

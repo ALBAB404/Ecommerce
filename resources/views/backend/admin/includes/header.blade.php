@@ -42,3 +42,6 @@
 
 {{-- toster --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+
+{{-- custom css  --}}
+<link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css') }}">

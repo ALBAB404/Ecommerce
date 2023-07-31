@@ -37,10 +37,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
     // Category
 
     Route::controller(CategoryController::class)->name('category.')->prefix('category')->group(function(){
-        route::get('/all', 'all')->name('all');
+        route::get('/index', 'index')->name('index');
         route::get('/{category}', 'show')->name('show');
         route::get('/', 'create')->name('create');
         route::post('/store', 'store')->name('store');
+        route::post('/update/{category}', 'update')->name('update');
     });
 
 

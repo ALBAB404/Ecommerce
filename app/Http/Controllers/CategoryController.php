@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,11 +12,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function all()
+    public function index()
     {
-       $categories =  Category::latest()->get();
-       return response()->json($categories);
-
+        $categories =  Category::latest()->get();
+        return response()->json($categories);
     }
 
     /**
@@ -29,40 +29,27 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255|unique:categories',
-            'slug' => 'required|string|max:255|unique:categories',
-            'status' => 'required',
+            'title' => 'required|unique:categories,title',
+            'image' => 'required|mimes:png,jpg',
         ]);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = Str::slug($request->input('slug'));
-            $height = 400;
-            $width = 1000;
-            $thumb_height = 150;
-            $thumb_width = 300;
-            $path = 'image/Original/';
-            $thumbnail_path = 'image/Thumbnail/';
+       $category =  Category::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'image' => File::upload($request->image,'category'),
+        ]);
 
-            $post_data['image'] =  PhotoUploadController::imageUpload($name,$height,$width,$path,$file);
-                                   PhotoUploadController::imageUpload($name,$thumb_height,$thumb_width,$thumbnail_path,$file);
+        if($category){
+            return response()->json([
+                "status" => true,
+                "message" => "Data inserted!",
+                "data" => $category
+            ]);
         }
-
-        $category = new Category();
-        $category->title = $request->input('title');
-        $category->slug = Str::slug($request->input('slug', '-'));
-        $category->status = $request->input('status');
-        $category->image = $post_data['image'];
-
-        // Handle the image upload and save the image path to the database if required
-        // ...
-
-        $category->save();
-
-        return response()->json(['message' => 'Category created successfully']);
     }
 
     /**
@@ -70,15 +57,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return response()->json($category);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
     }
 
     /**
@@ -86,14 +65,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+
     }
 
+}
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
-    {
-        //
-    }
-}

@@ -97,12 +97,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="modalCenterTitle">CAtegories</h5>
+            <h5 class="modal-title" id="modalCenterTitle">Show Categories</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="showData">
+        <div class="modal-body">
             <div class="row">
+                <table class="table table-bordered">
+                    <tbody id="showData">
 
+            </tbody>
+        </table>
             </div>
         </div>
     </div>
@@ -137,8 +141,6 @@
             });
         });
         //table searching.......................................................................................................................
-
-
         //Slug .......................................................................................................................
         $(document).ready(function() {
             // Function to generate slug from the title
@@ -161,22 +163,13 @@
             // Listen for changes in the title input
             $('#title').on('input', updateSlug);
         });
-
         //Slug .......................................................................................................................
-
-
         //Category CRUD .......................................................................................................................
-        //image Show Form feild
-        $(document).ready(function(){
-            $('#image').change(function(e){
-                var reader = new FileReader();
-                reader.onload = function(e){
-                    $('#showImage').attr('src',e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-
+        //image Show Form feild start
+        let imageInput = document.getElementById('image');
+        let showImage = document.getElementById('showImage');
+        previewImage(imageInput, showImage);
+        //image Show Form feild end
         // Fetch Method start
        const getAllCategory = () =>{
             axios.get('/admin/category/index').then((res)=>{
@@ -196,29 +189,35 @@
                     <strong>${sl++}</strong>
                 </td>
                 <td>${items.title}</td>
-                <td><img src="{{ asset('${items.image}') }}" width="100px" alt=""></td>
+                <td>
+                    <div class="image-container">
+                        <img src="{{ asset('${items.image}') }}" class="img-thumbnail" alt="">
+                    </div>
+                </td>
                 <td>
                     <span class="badge ${items.status == 1 ? 'bg-success' : 'bg-danger'}">${items.status == 1 ? 'Active' : 'Inactive'}</span>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center">
                         <div class="me-2 text-center">
-                            <a href="" data-bs-toggle="modal" class="viewBtn" data-bs-target="#modalCenter" data-slug="">
+                            <a href="" data-bs-toggle="modal" class="viewBtn" data-bs-target="#modalCenter" data-slug="${items.slug}">
                                 <span class="btn btn-sm btn-warning"><i class='bx bx-show-alt'></i></span>
                             </a>
                         </div>
 
                         <div class="me-2">
-                            <a href="" data-bs-toggle="modal" class="editBtn" data-bs-target="#editCenter" data-slug="">
+                            <a href="" data-bs-toggle="modal" class="editBtn" data-bs-target="#editCenter" data-slug="${items.slug}">
                                 <span class="btn btn-sm btn-success"><i
                                         class='bx bxs-message-square-edit'></i></span>
                             </a>
                         </div>
-
                         <div>
-                            {!! Form::open() !!}
-                            {!! Form::button("<i class='bx bx-trash'></i>", ['class'=>'btn btn-sm btn-danger', 'type'=>'submit']) !!}
-                            {!! Form::close() !!}
+                            <form action="#" class="deleteRow" data-slug="${items.slug}">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </td>
@@ -228,46 +227,226 @@
         $('#myTable').html(loop)
        }
         // Fetch Method end
-        // Insert MEthod start
-        $('#addCategoryForm').on('submit', function(e){
-            e.preventDefault()
-            let title = $('#title')
-            let status = $('#status')
+        // Insert Method start
+            $('#addCategoryForm').on('submit', function(e) {
+                e.preventDefault();
+                let title = $('#title');
+                let status = $('#status');
+                let slug = $('#slug');
+                let imageInput = document.getElementById('image');
+                let showImage = document.getElementById('showImage');
 
-            let data =  new FormData()
+                let data = new FormData();
+                data.append('title', title.val());
+                data.append('status', status.val());
+                data.append('image', imageInput.files[0]);
 
-            data.append('title', title.val())
-            data.append('status', status.val())
-            data.append('image', document.getElementById('image').files[0])
+                axios.post("/admin/category/store", data)
+                    .then((res) => {
+                        getAllCategory();
+                        iziToast.success({
+                            title: 'Successfully Data Inserted!',
+                            message: "{{ Session::get('success') }}",
+                        });
 
-            axios.post("/admin/category/store",data).then((res) => {
-                getAllCategory();
-                iziToast.success({
-                    title: 'Successfully Data Inserted!',
-                    message: "{{ Session::get('success') }}",
-                });
-            })
-            .catch(err => {
-                console.error(err);
-            })
-
-        })
-        // Insert MEthod End
-
+                        // Reset form fields
+                        title.val('');
+                        status.val('');
+                        slug.val('');
+                        showImage.src = '';
+                        imageInput.value = ''; // Reset file input
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
+            });
+        // Insert Method End
         // Show MEthod start
-
-
-
+        $('body').on('click','.viewBtn', function(e){
+            e.preventDefault()
+            let slug = $(this).data('slug')
+            let url = generateAdminURL('category')+slug
+            axios.get(url).then((res)=>{
+                let category =  res.data
+                let html = `
+                <tr>
+                    <th>SL</th>
+                    <td>${category.id}</td>
+                </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>${category.title}</td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td><img src="{{ asset('${category.image}') }}" width="100px" alt=""></td>
+                    </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                       <span class="badge ${category.status == 1 ? 'bg-success' : 'bg-danger'}">
+                            ${category.status == 1 ? 'Active' : 'Inactive'}
+                        </span>
+                    </td>
+                </tr>
+                `
+                $('#showData').html(html)
+            })
+        })
         // Show MEthod End
-
         //edit Methd Start
+        $('body').on('click','.editBtn', function(e){
+            e.preventDefault()
+            let slug = $(this).data('slug')
+            let url = generateAdminURL("category") + slug
+            axios.get(url).then((res)=>{
+                let category =  res.data
+                let html = `
+                <form action="" id="editCategoryForm">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Title</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="bx bx-user"></i></span>
+                            <input type="text" name="title" class="form-control" id="editTitle" value="${category.title}"
+                                placeholder="John Doe" aria-label="John Doe"
+                                aria-describedby="basic-icon-default-fullname2">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                    <input type="hidden" name="slug" id="editSlug" class="form-control"value="${category.slug}"
+                        placeholder="john.doe" aria-label="john.doe"
+                        aria-describedby="basic-icon-default-email2">
+                    </div>
+                    <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">Image</label>
+                <div class="input-group">
+                    <input type="file" name="image" class="form-control" id="editImage">
+                    <img src="{{ asset('${category.image}') }}" id="editPreviewImage" class="editImage mt-2 img-fluid" width="100%" alt="">
+                </div>
+            </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">Status</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                    class='bx bx-user-circle'></i></span>
+                                    <select name="status" id="editStatus" class="form-select">
+                                        <option value="">Select Status</option>
+                                        <option value="1" ${category.status == 1 ? 'selected' : ''}>Active</option>
+                                        <option value="0" ${category.status == 0 ? 'selected' : ''}>Inactive</option>
+                                    </select>
 
+                        </div>
+                    </div>
+                    <button type="submit" id="editButton" class="btn btn-primary">Update</button>
+                </form>
+                `
+                $('#editData').html(html)
+                 // Call the image preview function for the edit form
+                let imageInput = document.getElementById('editImage');
+                let previewImageElement = document.getElementById('editPreviewImage');
+                previewImage(imageInput, previewImageElement);
+            })
+        })
         //edit Methd End
-
         //update Methd start
+        $('body').on('submit', '#editCategoryForm', function (e) {
+            e.preventDefault();
+            let title = $('#editTitle');
+            let slug = $('#editSlug');
+            let status = $('#editStatus');
 
-        //update Methd End
+            const url = window.location.href;
 
+            if ($('#editImage').val()) {
+                let data = new FormData();
+                data.append('title', title.val());
+                data.append('status', status.val());  // Add status to FormData
+                data.append('image', document.getElementById('editImage').files[0]);
+
+                axios.post(`${url}/update/${slug.val()}`, data).then(res => {
+                    title.val(null);
+                    document.getElementById('editImage').value = null;
+                    getAllCategory();
+                    $('#editCenter').modal('toggle');
+                }).catch(err => {
+                    if (err.response.data.errors.title) {
+                        titleError.text(err.response.data.errors.title[0]);
+                    }
+                    if (err.response.data.errors.image) {
+                        imageError.text(err.response.data.errors.image[0]);
+                    }
+                    if (err.response.data.errors.status) {  // Handle status error
+                        statusError.text(err.response.data.errors.status[0]);
+                    }
+                });
+            } else {
+                axios.post(`${url}/update/${slug.val()}`, {
+                    'title': title.val(),
+                    'status': status.val()  // Add status to the request
+                }).then(res => {
+                    title.val(null);
+                    getAllCategory();
+                    $('#editCenter').modal('toggle');
+                }).catch(err => {
+                    if (err.response.data.errors.title) {
+                        titleError.text(err.response.data.errors.title[0]);
+                    }
+                    if (err.response.data.errors.status) {  // Handle status error
+                        statusError.text(err.response.data.errors.status[0]);
+                    }
+                });
+            }
+        });
+        //update Methd end
+     // Delete Method start
+     $('body').on('submit', '.deleteRow', function (e) {
+                e.preventDefault();
+
+                const deleteForm = $(this);
+                const slug = deleteForm.data('slug');
+                const url = generateAdminURL('category/delete') + slug;
+                console.log(url);
+
+                // Show SweetAlert confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You won\'t be able to revert this!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete(url).then((res) => {
+                            if (res.data.success) {
+                                getAllCategory();
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'Your data has been deleted.',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+                            }
+                        }).catch((err) => {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to delete the data.',
+                                icon: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        Swal.fire('Cancelled', 'Your data is safe :)', 'error');
+                    }
+                });
+        });
+
+    // Delete Method end
         //Category CRUD .......................................................................................................................
     </script>
 @endpush

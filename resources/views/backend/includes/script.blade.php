@@ -25,6 +25,12 @@
     {{-- toster --}}
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
+    {{-- custom js --}}
+    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+
+    <!-- Include SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
 {{-- Add this script before your existing IziToast scripts --}}
 <script>
     iziToast.settings({

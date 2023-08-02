@@ -2,3 +2,16 @@
     width: 100% ;
     margin-top: 20px;
 }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100px;
+    cursor: pointer;
+}
+
+.image-container:hover {
+    transform: scale(1.10); /* Slightly increase the size on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow on hover */
+}

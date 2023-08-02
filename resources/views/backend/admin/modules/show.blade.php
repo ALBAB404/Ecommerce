@@ -6,7 +6,7 @@
     <div class="card-body">
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered">
-                <thead>
+                <tbody>
                     <tr>
                          <th>SL</th>
                          <td>{{ $admin->id }}</td>

@@ -38,10 +38,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::controller(CategoryController::class)->name('category.')->prefix('category')->group(function(){
         route::get('/index', 'index')->name('index');
-        route::get('/{category}', 'show')->name('show');
         route::get('/', 'create')->name('create');
         route::post('/store', 'store')->name('store');
+        route::get('/{category}', 'show')->name('show');
         route::post('/update/{category}', 'update')->name('update');
+        Route::delete('/delete/{category}', 'delete')->name('delete');
+
     });
 
 

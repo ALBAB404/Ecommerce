@@ -118,9 +118,16 @@
               </li>
               <!-- exp -->
               <li class="menu-item">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('admin.category.create') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">EXP</div>
+                  <div data-i18n="Analytics">Category</div>
+                </a>
+              </li>
+              <!-- ADmin -->
+              <li class="menu-item">
+                <a href="{{ route('admin.index') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Admin</div>
                 </a>
               </li>
             </ul>

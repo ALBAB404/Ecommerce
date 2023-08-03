@@ -279,7 +279,7 @@
                     </tr>
                     <tr>
                         <th>Image</th>
-                        <td><img src="{{ asset('${category.image}') }}" width="100px" alt=""></td>
+                        <td><img src="{{ asset('${category.image}') }}" width="150px" alt=""></td>
                     </tr>
                 <tr>
                     <th>Status</th>
@@ -323,7 +323,7 @@
                 <label class="form-label" for="basic-icon-default-email">Image</label>
                 <div class="input-group">
                     <input type="file" name="image" class="form-control" id="editImage">
-                    <img src="{{ asset('${category.image}') }}" id="editPreviewImage" class="editImage mt-2 img-fluid" width="100%" alt="">
+                    <img src="{{ asset('${category.image}') }}" id="editPreviewImage" class="editImage mt-2 img-fluid" alt="">
                 </div>
             </div>
                     <div class="mb-3">

@@ -376,8 +376,7 @@ $(document).ready(function () {
                 });
      });
     // delete data end
-    // Edit data Start
-    // Open the edit modal and populate with data
+    // Edit && update data Start
             $('body').on('click', '.editBtn', function (e) {
                 e.preventDefault();
                 const slug = $(this).data('slug');
@@ -426,51 +425,51 @@ $(document).ready(function () {
                     });
             });
 
-    // Edit data end
+    // Edit && update data end
     // show data start
     $('body').on('click', '.viewBtn', function(e) {
-    e.preventDefault();
+            e.preventDefault();
 
-    let slug = $(this).data('slug');
-    let url = generateAdminURL('sub-category') + slug;
+            let slug = $(this).data('slug');
+            let url = generateAdminURL('sub-category') + slug;
 
-    axios.get(url).then((res) => {
-        let subCategory = res.data;
-        console.log(subCategory);
-        // Check if subCategory.category exists and has a title property
-        if (subCategory.category && subCategory.category.title) {
-            let html = `
-                <tr>
-                    <th>ID</th>
-                    <td>${subCategory.id}</td>
-                </tr>
-                <tr>
-                    <th>Parent Category</th>
-                    <td>${subCategory.category.title}</td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>${subCategory.title}</td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>
-                        <span class="badge ${subCategory.status == 1 ? 'bg-success' : 'bg-danger'}">
-                            ${subCategory.status == 1 ? 'Active' : 'Inactive'}
-                        </span>
-                    </td>
-                </tr>
-            `;
-            $('#subCategoryData').html(html);
+            axios.get(url).then((res) => {
+                let subCategory = res.data;
+                console.log(subCategory);
+                // Check if subCategory.category exists and has a title property
+                if (subCategory.category && subCategory.category.title) {
+                    let html = `
+                        <tr>
+                            <th>ID</th>
+                            <td>${subCategory.id}</td>
+                        </tr>
+                        <tr>
+                            <th>Parent Category</th>
+                            <td>${subCategory.category.title}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>${subCategory.title}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                <span class="badge ${subCategory.status == 1 ? 'bg-success' : 'bg-danger'}">
+                                    ${subCategory.status == 1 ? 'Active' : 'Inactive'}
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                    $('#subCategoryData').html(html);
 
-            // Open the sub-category modal
-            $('#subCategoryModal').modal('show');
-        } else {
-            console.error('Category information is missing or invalid.');
-        }
-    }).catch((error) => {
-        console.error(error);
-    });
+                    // Open the sub-category modal
+                    $('#subCategoryModal').modal('show');
+                } else {
+                    console.error('Category information is missing or invalid.');
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
 });
 
     // show data end

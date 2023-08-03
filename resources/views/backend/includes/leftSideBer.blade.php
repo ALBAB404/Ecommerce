@@ -95,6 +95,11 @@
                     </a>
                   </li>
                   <li class="menu-item">
+                    <a href="{{ route('admin.sub-category.create') }}" class="menu-link">
+                      <div data-i18n="Without menu">Sub Category</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
                     <a href="layouts-without-navbar.html" class="menu-link">
                       <div data-i18n="Without navbar">Without navbar</div>
                     </a>

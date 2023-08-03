@@ -2,10 +2,12 @@
 use App\Http\Controllers\{
     adminAuthenticateController,
     AdminController,
-    CategoryController
+    CategoryController,
+    SubcategoryController
 };
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -43,6 +45,19 @@ Route::prefix('admin')->name('admin.')->group(function(){
         route::get('/{category}', 'show')->name('show');
         route::post('/update/{category}', 'update')->name('update');
         Route::delete('/delete/{category}', 'delete')->name('delete');
+
+    });
+
+    // SubCategory
+
+    Route::controller(SubcategoryController::class)->name('sub-category.')->prefix('sub-category')->group(function(){
+        route::get('/index', 'index')->name('index');
+        route::get('/', 'create')->name('create');
+        route::post('/store', 'store')->name('store');
+        route::get('/{subCategory}', 'show')->name('show');
+        route::get('/edit/{subCategory}', 'edit')->name('edit');
+        route::post('/update/{subCategory}', 'update')->name('update');
+        Route::delete('/delete/{subCategory}', 'delete')->name('delete');
 
     });
 

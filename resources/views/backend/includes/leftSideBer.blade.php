@@ -85,13 +85,13 @@
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                  <div data-i18n="Layouts">Layouts</div>
+                  <div data-i18n="Layouts">Products</div>
                 </a>
 
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                      <div data-i18n="Without menu">Without menu</div>
+                    <a href="{{ route('admin.category.create') }}" class="menu-link">
+                      <div data-i18n="Without menu">Category</div>
                     </a>
                   </li>
                   <li class="menu-item">
@@ -115,13 +115,6 @@
                     </a>
                   </li>
                 </ul>
-              </li>
-              <!-- exp -->
-              <li class="menu-item">
-                <a href="{{ route('admin.category.create') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Category</div>
-                </a>
               </li>
               <!-- ADmin -->
               <li class="menu-item">

@@ -146,6 +146,13 @@
 
        const table_data_show = (sizes) => {
         let sl = 1;
+        const sizeClasses =  ['bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger'];
+
+        const getRandomClass = () => {
+            const randomIndex = Math.floor(Math.random() * sizeClasses.length);
+            return sizeClasses[randomIndex];
+        };
+
         let loop =  sizes.map(items =>{
             return `
             <tr>
@@ -153,7 +160,11 @@
                     <i class="fab fa-angular fa-lg text-danger me-3"></i>
                     <strong>${sl++}</strong>
                 </td>
-                <td>${items.title}</td>
+                <td>
+                <div class="d-flex flex-wrap">
+                    <span class="badge rounded-pill ${getRandomClass()}">${items.title}</span>
+                </div>
+            </td>
                 <td>
                     <div class="d-flex justify-content-center">
                         <div class="me-2">

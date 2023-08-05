@@ -3,6 +3,8 @@ use App\Http\Controllers\{
     adminAuthenticateController,
     AdminController,
     CategoryController,
+    ColorController,
+    SizeController,
     SubcategoryController
 };
 
@@ -62,7 +64,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
 
+    // Color
 
+    Route::controller(ColorController::class)->name('color.')->prefix('color')->group(function(){
+        route::get('/index', 'index')->name('index');
+        route::get('/', 'create')->name('create');
+        route::post('/store', 'store')->name('store');
+        route::get('/{color}', 'show')->name('show');
+        route::post('/update/{color}', 'update')->name('update');
+        Route::delete('/delete/{color}', 'delete')->name('delete');
+
+    });
+
+
+    // Size
+
+    Route::controller(SizeController::class)->name('size.')->prefix('size')->group(function(){
+        route::get('/index', 'index')->name('index');
+        route::get('/', 'create')->name('create');
+        route::post('/store', 'store')->name('store');
+        route::get('/{size}', 'show')->name('show');
+        route::post('/update/{size}', 'update')->name('update');
+        Route::delete('/delete/{size}', 'delete')->name('delete');
+
+    });
 
     // authentication
 

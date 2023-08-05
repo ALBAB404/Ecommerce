@@ -100,6 +100,11 @@
                     </a>
                   </li>
                   <li class="menu-item">
+                    <a href="{{ route('admin.color.create') }}" class="menu-link">
+                      <div data-i18n="Without menu">Color</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
                     <a href="layouts-without-navbar.html" class="menu-link">
                       <div data-i18n="Without navbar">Without navbar</div>
                     </a>

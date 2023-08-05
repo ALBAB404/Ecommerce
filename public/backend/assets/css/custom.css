@@ -15,3 +15,13 @@
     transform: scale(1.10); /* Slightly increase the size on hover */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow on hover */
 }
+
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 200px;
+}
+.ck-content .image {
+    /* block images */
+    max-width: 80%;
+    margin: 20px auto;
+}

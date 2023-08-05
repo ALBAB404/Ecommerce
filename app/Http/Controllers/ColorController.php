@@ -79,7 +79,6 @@ class ColorController extends Controller
 
     public function delete(Color $color)
         {
-            $img = $color->image;
             if ($color->delete()) {
                 return response()->json([
                     'success' => true

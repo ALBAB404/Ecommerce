@@ -3,6 +3,9 @@
     <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/i18n/i18n.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 
     <script src="{{ asset('backend/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
@@ -31,11 +34,33 @@
     <!-- Include SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
+    <!-- Include ckeditor  -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+    <!-- Include ckeditor  -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
 {{-- Add this script before your existing IziToast scripts --}}
 <script>
     iziToast.settings({
       position: 'topRight',
     });
+
+
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    ClassicEditor
+        .create( document.querySelector( '#editor2' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+
+
+
   </script>
 
   @if(Session::has('success'))

@@ -29,6 +29,7 @@
 
 <!-- Vendors CSS -->
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
 
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
@@ -36,7 +37,7 @@
 
 <!-- Helpers -->
 <script src="{{ asset('backend/assets/vendor/js/helpers.js') }}"></script>
-
+<script src="{{ asset('backend/assets/vendor/js/template-customizer.js') }}"></script>
 <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 <script src="{{ asset('backend/assets/js/config.js') }}"></script>

@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     AdminController,
     CategoryController,
     ColorController,
+    ProductController,
     SizeController,
     SubcategoryController
 };
@@ -88,6 +89,19 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::delete('/delete/{size}', 'delete')->name('delete');
 
     });
+
+        // Products
+
+        Route::controller(ProductController::class)->name('product.')->prefix('product')->group(function(){
+            route::get('/index', 'index')->name('index');
+            route::get('/', 'create')->name('create');
+            route::post('/store', 'store')->name('store');
+            route::get('/{product}', 'show')->name('show');
+            route::get('/edit/{product}', 'edit')->name('edit');
+            route::post('/update/{product}', 'update')->name('update');
+            Route::delete('/delete/{product}', 'delete')->name('delete');
+
+        });
 
     // authentication
 

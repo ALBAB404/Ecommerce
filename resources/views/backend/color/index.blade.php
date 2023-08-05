@@ -143,17 +143,33 @@
         }
         getAllCategory();
 
-
        const table_data_show = (colors) => {
         let sl = 1;
+        // Mapping object for title classes
+    const titleClassMap = {
+        red: 'bg-danger',
+        green: 'bg-success',
+        blue: 'bg-info',
+        orange: 'bg-warning',
+        white: 'bg-light text-dark'
+        // Add more title-class mappings here as needed
+    };
+
+
         let loop =  colors.map(items =>{
+            let lowercaseTitle = items.title.toLowerCase();
+
+        // Determine the badge class based on the title
+        let titleBadgeClass = titleClassMap[lowercaseTitle] || 'bg-dark';
+
+
             return `
             <tr>
                 <td>
                     <i class="fab fa-angular fa-lg text-danger me-3"></i>
                     <strong>${sl++}</strong>
                 </td>
-                <td>${items.title}</td>
+                <td><span class="badge ${titleBadgeClass}">${items.title}</span></td>
                 <td>
                     <div class="d-flex justify-content-center">
                         <div class="me-2">

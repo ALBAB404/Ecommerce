@@ -11,11 +11,16 @@ class product extends Model
 
     protected $guarded = [];
 
-    public function product_info()
+    public function getRouteKeyName()
     {
-        return $this->hasOne(productInfo::class,'product_id');
+        return 'slug';
     }
-    public function slider()
+
+    public function productInfo()
+    {
+        return $this->hasOne(productInfo::class);
+    }
+    public function productSlider()
     {
         return $this->hasMany(productSlider::class, 'product_id');
     }
@@ -23,16 +28,8 @@ class product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function sub_category()
+    public function Subcategory()
     {
         return $this->belongsTo(Subcategory::class);
-    }
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
-    public function size()
-    {
-        return $this->belongsTo(Size::class);
     }
 }

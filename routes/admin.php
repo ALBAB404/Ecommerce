@@ -93,13 +93,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
         // Products
 
         Route::controller(ProductController::class)->name('product.')->prefix('product')->group(function(){
-            route::get('/index', 'index')->name('index');
-            route::get('/', 'create')->name('create');
-            route::post('/store', 'store')->name('store');
+            route::get('/', 'index')->name('index');
+            route::get('/create', 'create')->name('create');
+            route::post('/', 'store')->name('store');
             route::get('/{product}', 'show')->name('show');
             route::get('/edit/{product}', 'edit')->name('edit');
             route::post('/update/{product}', 'update')->name('update');
-            Route::delete('/delete/{product}', 'delete')->name('delete');
+            Route::post('/delete/{product}', 'delete')->name('delete');
 
         });
 

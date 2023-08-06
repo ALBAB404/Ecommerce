@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class productSlider extends Model
 {
     use HasFactory;
+
+
+    protected $guarded = [];
 }

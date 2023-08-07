@@ -22,7 +22,7 @@ class product extends Model
     }
     public function productSlider()
     {
-        return $this->hasMany(productSlider::class, 'product_id');
+        return $this->hasMany(productSlider::class);
     }
     public function category()
     {
@@ -31,5 +31,13 @@ class product extends Model
     public function Subcategory()
     {
         return $this->belongsTo(Subcategory::class);
+    }
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
     }
 }

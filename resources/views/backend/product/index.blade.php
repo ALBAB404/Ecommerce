@@ -59,12 +59,12 @@
                 <td>
                     <div class="d-flex justify-content-center">
                         <div class="me-2 text-center">
-                            <a href="">
+                            <a href="{{ route('admin.product.show', $product->slug) }}">
                                 <span class="btn btn-sm btn-warning"><i class='bx bx-show-alt'></i></span>
                             </a>
                         </div>
                         <div class="me-2">
-                            <a href="">
+                            <a href="{{ route('admin.product.edit', $product->slug) }}">
                                 <span class="btn btn-sm btn-success"><i class='bx bxs-message-square-edit'></i></span>
                             </a>
                         </div>

@@ -175,13 +175,15 @@ class ProductController extends Controller
             $sliders = [];
             $img = $product->productInfo->image;
             foreach($product->productSlider as $index => $slider){
-                array_push($sliders,$slider);
-            }
 
+                array_push($sliders,$slider);
+
+            }
+            // dd($sliders);
             $product->delete();
             File::deleteFile($img);
             foreach($sliders as $slide){
-                File::deleteFile($slide);
+                File::deleteFile($slide->image);
             }
 
          return redirect()->back();

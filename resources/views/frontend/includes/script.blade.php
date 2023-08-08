@@ -1,20 +1,22 @@
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('backend/assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/popper.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/bootstrap.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
 
-    <script src="{{ asset('backend/assets/vendor/js/menu.js') }}"></script>
-    <!-- endbuild -->
+<!--Plugins JS-->
 
-    <!-- Vendors JS -->
-    <script src="{{ asset('backend/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.sticky-sidebar.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/countdownTimer.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/nouislider.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/scrollup.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.zoom.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/slick.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/infiniteslidev2.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/click-to-call.js') }}"></script>
 
-    <!-- Main JS -->
-    <script src="{{ asset('backend/assets/js/main.js') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('backend/assets/js/dashboards-analytics.js') }}"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Main Js -->
+<script src="{{ asset('frontend/assets/js/vendor/index.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/demo-8.js') }}"></script>

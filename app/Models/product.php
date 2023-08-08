@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Scopes\ProductScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    use HasFactory;
+    use HasFactory, ProductScope;
 
     protected $guarded = [];
 
@@ -40,4 +41,9 @@ class product extends Model
     {
         return $this->belongsTo(Size::class);
     }
+
+
+
+
+
 }

@@ -155,6 +155,7 @@ class ProductController extends Controller
             foreach ($request->edit_slider_delete_image as $id) {
                 $slider = ProductSlider::find($id);
                 File::deleteFile($slider->image);
+                // dd($slider);
                 $slider->delete();
             }
         }

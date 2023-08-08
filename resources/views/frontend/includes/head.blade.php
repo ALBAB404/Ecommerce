@@ -1,42 +1,30 @@
-<meta charset="utf-8" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-/>
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-<title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+<title>Ekka - Ecommerce HTML Template.</title>
+<meta name="keywords" content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops" />
+<meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+<meta name="author" content="ashishmaraviya">
 
-<meta name="description" content="" />
+<!-- site Favicon -->
+<link rel="icon" href="{{ asset('frontend/assets/images/favicon/favicon-8.png') }}" sizes="32x32" />
+<link rel="apple-touch-icon" href="{{ asset('frontend/assets/images/favicon/favicon-8.png') }}" />
+<meta name="msapplication-TileImage" content="{{ asset('frontend/assets/images/favicon/favicon-8.png') }}" />
 
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ asset('backend/assets/img/favicon/favicon.ico') }}" />
+<!-- css Icon Font -->
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/vendor/ecicons.min.css') }}" />
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-  rel="stylesheet"
-/>
+<!-- css All Plugins Files -->
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/swiper-bundle.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/jquery-ui.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/countdownTimer.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/nouislider.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/slick.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/owl.carousel.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/owl.theme.default.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/bootstrap.css') }}" />
 
-<!-- Icons. Uncomment required icon fonts -->
-<link rel="stylesheet" href="{{ asset('backend/assets/vendor/fonts/boxicons.css') }}" />
-
-<!-- Core CSS -->
-<link rel="stylesheet" href="{{ asset('backend/assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-<link rel="stylesheet" href="{{ asset('backend/assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
-<link rel="stylesheet" href="{{ asset('backend/assets/css/demo.css') }}" />
-
-<!-- Vendors CSS -->
-<link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
-<link rel="stylesheet" href="{{ asset('backend/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-
-<!-- Page CSS -->
-
-<!-- Helpers -->
-<script src="{{ asset('backend/assets/vendor/js/helpers.js') }}"></script>
-
-<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-<script src="{{ asset('backend/assets/js/config.js') }}"></script>
+<!-- Main Style -->
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/demo8.css') }}" />

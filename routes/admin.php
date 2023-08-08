@@ -8,8 +8,9 @@ use App\Http\Controllers\{
     SizeController,
     SubcategoryController
 };
-
+use App\Http\Controllers\frontend\homeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\product;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
 
@@ -102,10 +103,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::post('/delete/{product}', 'delete')->name('delete');
 
         });
-
     // authentication
 
     route::post('authenticate', [adminAuthenticateController::class, 'authenticate'])->name('authenticate');
     route::post('logout', [adminAuthenticateController::class, 'logout'])->name('logout');
 
 });
+
+Route::get('/',[homeController::class, 'home'])->name('home');

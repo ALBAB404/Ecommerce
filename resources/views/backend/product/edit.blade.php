@@ -172,11 +172,23 @@
                                                 <small class="text-light fw-semibold d-block">Inline Radio</small>
                                                 <div class="form-check form-check-inline mt-3">
                                                     <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio1" value="1" {{ $product->productInfo->is_featured == 1 ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                                    <label class="form-check-label" for="inlineRadio1">Featured Product</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio2" value="0" {{ $product->productInfo->is_featured == 0 ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                                    <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio2" value="2" {{ $product->productInfo->is_featured == 2 ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="inlineRadio2">Latest Product</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio2" value="3" {{ $product->productInfo->is_featured == 3 ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="inlineRadio2">New Arrivals</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio2" value="4" {{ $product->productInfo->is_featured == 4 ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="inlineRadio2">Trending</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input " type="radio" name="edit_is_featured" id="inlineRadio2" value="5" {{ $product->productInfo->is_featured == 5 ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="inlineRadio2">Top Rated</label>
                                                 </div>
                                             </div>
                                         </div>

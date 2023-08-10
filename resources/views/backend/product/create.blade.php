@@ -181,14 +181,25 @@
                                         <h5 class="card-header">Product Features</h5>
                                         <div class="card-body">
                                             <div class="col-md">
-                                                <small class="text-light fw-semibold d-block">Inline Radio</small>
                                                 <div class="form-check form-check-inline mt-3">
                                                     <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio1" value="1">
-                                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                                    <label class="form-check-label" for="inlineRadio1">Featured Product</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio2" value="0">
-                                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                                    <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadio2">Latest Product</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio2" value="3">
+                                                    <label class="form-check-label" for="inlineRadio2">New Arrivals</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio2" value="4">
+                                                    <label class="form-check-label" for="inlineRadio2">Trending</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input  class="form-check-input @error('is_featured') is-invalid @enderror" type="radio" name="is_featured" id="inlineRadio2" value="5">
+                                                    <label class="form-check-label" for="inlineRadio2">Top Rated</label>
                                                 </div>
                                             </div>
                                             @error('is_featured')

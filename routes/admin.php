@@ -2,13 +2,17 @@
 use App\Http\Controllers\{
     adminAuthenticateController,
     AdminController,
+    BannerController,
     CategoryController,
     ColorController,
     ProductController,
     SizeController,
     SubcategoryController
 };
-use App\Http\Controllers\frontend\homeController;
+use App\Http\Controllers\frontend\{
+    singleProductController,
+    homeController,
+};
 use App\Http\Controllers\ProfileController;
 use App\Models\product;
 use App\Models\Subcategory;
@@ -103,6 +107,18 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::post('/delete/{product}', 'delete')->name('delete');
 
         });
+
+        //Banner
+        Route::controller(BannerController::class)->name('banner.')->prefix('banner')->group(function(){
+            route::get('/', 'index')->name('index');
+            route::get('/create', 'create')->name('create');
+            route::post('/', 'store')->name('store');
+            route::get('/show/{banner}', 'show')->name('show');
+            route::post('/update/{banner}', 'update')->name('update');
+            Route::delete('/delete/{banner}', 'delete')->name('delete');
+
+        });
+
     // authentication
 
     route::post('authenticate', [adminAuthenticateController::class, 'authenticate'])->name('authenticate');
@@ -110,4 +126,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 });
 
+// frontend Routes All Defind Here
+
 Route::get('/',[homeController::class, 'home'])->name('home');
+Route::get('/product/{product}',[singleProductController::class, 'singleProduct'])->name('single_product');

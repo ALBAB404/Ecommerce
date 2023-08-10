@@ -11,6 +11,7 @@ class product extends Model
     use HasFactory, ProductScope;
 
     protected $guarded = [];
+    protected $with = ['size','color','productInfo','productSlider','category','Subcategory'];
 
     public function getRouteKeyName()
     {

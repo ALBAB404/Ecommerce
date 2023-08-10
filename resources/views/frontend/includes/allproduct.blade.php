@@ -746,8 +746,10 @@
             <ul class="ec-pro-tab-nav nav justify-content-end">
                 <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab"
                         href="#all">All</a></li>
-                    @foreach ($featured_products as $featured_product)
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#{{ $featured_product->category->slug }}">{{ $featured_product->category->title }}</a></li>
+                    @foreach ($categories as $category)
+                        @if(!$category->product_count == 0)
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cat_id{{ $category->id }}">{{ $category->title }}</a></li>
+                        @endif
                     @endforeach
             </ul>
         </div>
@@ -764,11 +766,13 @@
                             <div class="ec-product-inner">
                                 <div class="ec-pro-image-outer">
                                     <div class="ec-pro-image">
-                                        <a href="product-left-sidebar.html" class="image">
-                                            <img class="main-image"
+                                        <a href="{{ route('single_product', $featured_product->slug) }}">
+                                            <div class="image">
+                                                <img class="main-image"
                                                 src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
                                             <img class="hover-image"
                                                 src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                            </div>
                                         </a>
                                         <span class="flags">
                                             <span class="new">New</span>
@@ -813,59 +817,71 @@
                     </div>
                 </div>
                 <!-- ec 1st Product tab end -->
+                {{-- @if(product_count == 0)
+                    <h1> Product Not Found </h1>
+                @else
+
+                @endif --}}
                 <!-- ec 2nd Product tab start -->
-                @foreach ($featured_products as $featured_product)
-                <div class="tab-pane fade" id="{{ $featured_product->category->slug }}">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
-                            <div class="ec-product-inner">
-                                <div class="ec-pro-image-outer">
-                                    <div class="ec-pro-image">
-                                        <a href="product-left-sidebar.html" class="image">
-                                            <img class="main-image"
-                                                src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
-                                            <img class="hover-image"
-                                                src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
-                                        </a>
-                                        <div class="ec-pro-actions">
-                                            <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                    src="{{ asset('frontend') }}/assets/images/icons/pro_wishlist.svg"
-                                                    class="svg_img pro_svg" alt="" /></a>
-                                            <a href="#" class="ec-btn-group quickview"
-                                                data-link-action="quickview" title="Quick view"
-                                                data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
-                                                    src="{{ asset('frontend') }}/assets/images/icons/quickview.svg"
-                                                    class="svg_img pro_svg" alt="" /></a>
-                                            <a href="compare.html" class="ec-btn-group compare"
-                                                title="Compare"><img src="{{ asset('frontend') }}/assets/images/icons/compare.svg"
-                                                    class="svg_img pro_svg" alt="" /></a>
-                                            <a href="javascript:void(0)"  title="Add To Cart" class="ec-btn-group add-to-cart"><img src="{{ asset('frontend') }}/assets/images/icons/pro_cart.svg"
-                                                    class="svg_img pro_svg" alt="" /></a>
+                @foreach ($categories as $category)
+                    <div class="tab-pane fade" id="cat_id{{ $category->id }}">
+                        <div class="row">
+                            @forelse($featured_products as $featured_product)
+                            @if($category->id == $featured_product->category->id)
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                <div class="ec-product-inner">
+                                    <div class="ec-pro-image-outer">
+                                        <div class="ec-pro-image">
+                                            <a href="{{ route('single_product', $featured_product->slug) }}" class="image">
+                                                <img class="main-image"
+                                                    src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                                <img class="hover-image"
+                                                    src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                            </a>
+                                            <div class="ec-pro-actions">
+                                                <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                        src="{{ asset('frontend') }}/assets/images/icons/pro_wishlist.svg"
+                                                        class="svg_img pro_svg" alt="" /></a>
+                                                <a href="#" class="ec-btn-group quickview"
+                                                    data-link-action="quickview" title="Quick view"
+                                                    data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
+                                                        src="{{ asset('frontend') }}/assets/images/icons/quickview.svg"
+                                                        class="svg_img pro_svg" alt="" /></a>
+                                                <a href="compare.html" class="ec-btn-group compare"
+                                                    title="Compare"><img src="{{ asset('frontend') }}/assets/images/icons/compare.svg"
+                                                        class="svg_img pro_svg" alt="" /></a>
+                                                <a href="javascript:void(0)"  title="Add To Cart" class="ec-btn-group add-to-cart"><img src="{{ asset('frontend') }}/assets/images/icons/pro_cart.svg"
+                                                        class="svg_img pro_svg" alt="" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ec-pro-content">
+                                        <a href="shop-left-sidebar-col-3.html"><h6 class="ec-pro-stitle">{{ $featured_product->category->title }}</h6></a>
+                                        <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $featured_product->title }}</a></h5>
+                                        <div class="ec-pro-rat-price">
+                                            <span class="ec-pro-rating">
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star"></i>
+                                            </span>
+                                            <span class="ec-price">
+                                                <span class="new-price">${{ $featured_product->productInfo->sell_price }}</span>
+                                                <span class="old-price">${{ $featured_product->productInfo->price }}</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ec-pro-content">
-                                    <a href="shop-left-sidebar-col-3.html"><h6 class="ec-pro-stitle">{{ $featured_product->category->title }}</h6></a>
-                                    <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $featured_product->title }}</a></h5>
-                                    <div class="ec-pro-rat-price">
-                                        <span class="ec-pro-rating">
-                                            <i class="ecicon eci-star fill"></i>
-                                            <i class="ecicon eci-star fill"></i>
-                                            <i class="ecicon eci-star fill"></i>
-                                            <i class="ecicon eci-star fill"></i>
-                                            <i class="ecicon eci-star"></i>
-                                        </span>
-                                        <span class="ec-price">
-                                            <span class="new-price">${{ $featured_product->productInfo->sell_price }}</span>
-                                            <span class="old-price">${{ $featured_product->productInfo->price }}</span>
-                                        </span>
-                                    </div>
-                                </div>
                             </div>
+                            @endif
+                            @empty
+                                <h1>Product Not Found</h1>
+                            @endforelse
                         </div>
                     </div>
-                </div>
                 @endforeach
+
                 <!-- ec 2nd Product tab end -->
             </div>
         </div>

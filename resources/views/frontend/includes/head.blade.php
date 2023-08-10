@@ -26,5 +26,4 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/bootstrap.css') }}" />
 
-<!-- Main Style -->
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/demo8.css') }}" />
+

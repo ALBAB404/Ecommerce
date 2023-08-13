@@ -89,6 +89,7 @@ class BannerController extends Controller
             $banner->update([
                 "title" => $request->title,
                 "subtitle" => $request->subtitle,
+                "price" => $request->price,
                 "content" => $request->content,
                 "button_text" => $request->button_text,
                 "button_link" => $request->button_link,
@@ -100,6 +101,7 @@ class BannerController extends Controller
             $banner->update([
                 "title" => $request->title,
                 "subtitle" => $request->subtitle,
+                "price" => $request->price,
                 "content" => $request->content,
                 "button_text" => $request->button_text,
                 "button_link" => $request->button_link,

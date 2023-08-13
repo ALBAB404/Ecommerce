@@ -74,13 +74,13 @@
             <!-- ec Banner Start -->
             <div class="col-md-6 col-sm-12" data-animation="fadeIn">
                 <div class="ec-banner-inner">
-                    <div class="ec-banner-block ec-banner-block-1">
+                    <div class="ec-banner-block ec-banner-block-1" style="width: 100%; height: 100%; padding: 0 15px; background-image: url({{ $offerDeals->first()->image }}); background-position: center; background-size: cover; background-repeat: no-repeat;">
                         <div class="banner-block">
                             <div class="banner-content">
                                 <div class="banner-text">
-                                    <span class="ec-banner-disc">25% discount</span>
-                                    <span class="ec-banner-title">Vegetables & Fruits</span>
-                                    <span class="ec-banner-stitle">Starting @ $10</span>
+                                    <span class="ec-banner-disc">{{ $offerDeals->first()->discount }}% discount</span>
+                                    <span class="ec-banner-title">{{ $offerDeals->first()->title }}</span>
+                                    <span class="ec-banner-stitle">Starting @ ${{ $offerDeals->first()->price }}</span>
                                 </div>
                                 <span class="ec-banner-btn"><a href="shop-left-sidebar-col-3.html">Shop Now <i
                                             class="ecicon eci-angle-double-right" aria-hidden="true"></i></a></span>

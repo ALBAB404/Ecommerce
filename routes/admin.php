@@ -5,6 +5,8 @@ use App\Http\Controllers\{
     BannerController,
     CategoryController,
     ColorController,
+    InstragramfeedController,
+    OfferDealController,
     ProductController,
     SizeController,
     SubcategoryController
@@ -12,8 +14,10 @@ use App\Http\Controllers\{
 use App\Http\Controllers\frontend\{
     singleProductController,
     homeController,
+    shopController,
 };
 use App\Http\Controllers\ProfileController;
+use App\Models\offerDeal;
 use App\Models\product;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Route;
@@ -119,6 +123,27 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         });
 
+        //offer Deal
+        Route::controller(OfferDealController::class)->name('offerDeal.')->prefix('offerDeal')->group(function(){
+            route::get('/', 'index')->name('index');
+            route::get('/create', 'create')->name('create');
+            route::post('/', 'store')->name('store');
+            route::get('/show/{offerDeal}', 'show')->name('show');
+            route::post('/update/{offerDeal}', 'update')->name('update');
+            Route::delete('/delete/{offerDeal}', 'delete')->name('delete');
+
+        });
+        //instragram Deal
+        Route::controller(InstragramfeedController::class)->name('instragramfeed.')->prefix('instragramfeed')->group(function(){
+            route::get('/', 'index')->name('index');
+            route::get('/create', 'create')->name('create');
+            route::post('/', 'store')->name('store');
+            route::get('/show/{instragramfeed}', 'show')->name('show');
+            route::post('/update/{instragramfeed}', 'update')->name('update');
+            Route::delete('/delete/{instragramfeed}', 'delete')->name('delete');
+
+        });
+
     // authentication
 
     route::post('authenticate', [adminAuthenticateController::class, 'authenticate'])->name('authenticate');
@@ -130,3 +155,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 Route::get('/',[homeController::class, 'home'])->name('home');
 Route::get('/product/{product}',[singleProductController::class, 'singleProduct'])->name('single_product');
+Route::get('/product/{product}',[singleProductController::class, 'ActiveProduct'])->name('ActiveProduct');
+Route::get('/shop-page',[shopController::class, 'shopPage'])->name('shopPage');

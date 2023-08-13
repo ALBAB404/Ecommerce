@@ -104,6 +104,7 @@
                                 <tr>
                                     <th>NO.</th>
                                     <th>Title</th>
+                                    <th>Price</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th class="text-center">Actions</th>
@@ -193,6 +194,7 @@
                     <strong>${sl++}</strong>
                 </td>
                 <td>${items.title}</td>
+                <td>${items.price}</td>
                 <td>
                     <div class="image-container">
                         <img src="{{ asset('${items.image}') }}" class="img-thumbnail" alt="">
@@ -289,6 +291,10 @@
                         <td>${category.title}</td>
                     </tr>
                     <tr>
+                        <th>Name</th>
+                        <td>${category.price}</td>
+                    </tr>
+                    <tr>
                         <th>Sub title</th>
                         <td>${category.subtitle}</td>
                     </tr>
@@ -353,6 +359,16 @@
                             <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                     class="bx bx-user"></i></span>
                             <input type="text" name="title" class="form-control" id="editSubtitle" value="${category.subtitle}"
+                                placeholder="John Doe" aria-label="John Doe"
+                                aria-describedby="basic-icon-default-fullname2">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Price</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="bx bx-user"></i></span>
+                            <input type="text" name="title" class="form-control" id="editPrice" value="${category.price}"
                                 placeholder="John Doe" aria-label="John Doe"
                                 aria-describedby="basic-icon-default-fullname2">
                         </div>
@@ -424,6 +440,7 @@
             let title = $('#editTitle');
             let editId = $('#editId').val();
             let subtitle = $('#editSubtitle');
+            let price = $('#editPrice');
             let content = $('#editContent');
             let button_text = $('#editButton_text');
             let button_link = $('#editButton_link');
@@ -435,6 +452,7 @@
                 let data = new FormData();
                 data.append('title', title.val());
                 data.append('subtitle', subtitle.val());
+                data.append('price', price.val());
                 data.append('content', content.val());
                 data.append('button_text', button_text.val());
                 data.append('button_link', button_link.val());
@@ -463,6 +481,7 @@
                 axios.post(`${url}`, {
                     'title': title.val(),
                     'subtitle': subtitle.val(),
+                    'price': price.val(),
                     'content': content.val(),
                     'button_text': button_text.val(),
                     'button_link': button_link.val(),
@@ -470,6 +489,7 @@
                 }).then(res => {
                     title.val(null);
                     subtitle.val(null);
+                    price.val(null);
                     content.val(null);
                     button_text.val(null);
                     button_link.val(null);

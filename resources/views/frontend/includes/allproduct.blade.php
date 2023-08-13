@@ -6,210 +6,37 @@
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-6 ec-all-product-content ec-new-product-content margin-b-30" data-animation="fadeIn">
             <div class="col-md-12">
                 <div class="section-title">
-                    <h2 class="ec-title">New Featured Products</h2>
+                    <h2 class="ec-title">New Arrivals</h2>
                 </div>
             </div>
             <div class="ec-new-slider">
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/88_1.jpg"
-                                        alt="Product" />
-                                </a>
+                @foreach ($newArrivals as $newArrival)
+                    <div class="col-sm-12 ec-all-product-block">
+                        <div class="ec-all-product-inner">
+                            <div class="ec-pro-image-outer">
+                                <div class="ec-pro-image">
+                                    <a href="product-left-sidebar.html" class="image">
+                                        <img class="main-image" src="{{ asset($newArrival->productInfo->image) }}"
+                                            alt="Product" />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Relaxed Short full Sleeve T-Shirt</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">clothes</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$50.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 2 pack</span>
-                                    </span>
+                            <div class="ec-pro-content">
+                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $newArrival->name }}</a></h5>
+                                <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ $newArrival->category->title }}</a></h6>
+                                <div class="ec-pro-rat-price">
+                                    <div class="ec-pro-rat-pri-inner">
+                                        <span class="ec-price">
+                                            <span class="new-price">${{ $newArrival->productInfo->sell_price }}.00</span>
+                                            <span class="old-price">${{ $newArrival->productInfo->price }}.00</span>
+                                            <span class="qty">- 2 pack</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/89_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Girls pnk Embro design Top</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Clothes</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$62.00</span>
-                                        <span class="old-price">$65.00</span>
-                                        <span class="qty">- 1 kg</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/90_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Black Floral Wrap Midi Skirt</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Clothes</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$52.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 1 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/91_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Pure Garment Dyed Cotton Shirt</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Mens fashion</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$56.00</span>
-                                        <span class="old-price">$78.00</span>
-                                        <span class="qty">- 3 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/92_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">MEN Yarn Fleece Full-Zip Jacket</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">winter wear</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$11.00</span>
-                                        <span class="qty">- 500 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/93_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Winter wear</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$42.00</span>
-                                        <span class="old-price">$45.00</span>
-                                        <span class="qty">- 5 kg</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/94_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">jackets</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$25.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 250 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/95_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Better Basics French Terry Sweatshorts</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">shorts</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$20.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 12 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!-- ec Trending -->
@@ -220,206 +47,33 @@
                 </div>
             </div>
             <div class="ec-new-slider">
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/96_1.jpg"
-                                        alt="Product" />
-                                </a>
+                @foreach ($trends as $trend)
+                    <div class="col-sm-12 ec-all-product-block">
+                        <div class="ec-all-product-inner">
+                            <div class="ec-pro-image-outer">
+                                <div class="ec-pro-image">
+                                    <a href="product-left-sidebar.html" class="image">
+                                        <img class="main-image" src="{{ asset($trend->productInfo->image) }}"
+                                            alt="Product" />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Running & Trekking Shoes - White</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">sports</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$42.00</span>
-                                        <span class="old-price">$45.00</span>
-                                        <span class="qty">- 5 kg</span>
-                                    </span>
+                            <div class="ec-pro-content">
+                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $trend->name }}</a></h5>
+                                <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ $trend->category->title }}</a></h6>
+                                <div class="ec-pro-rat-price">
+                                    <div class="ec-pro-rat-pri-inner">
+                                        <span class="ec-price">
+                                            <span class="new-price">${{ $trend->productInfo->sell_price }}.00</span>
+                                            <span class="old-price">${{ $trend->productInfo->price }}.00</span>
+                                            <span class="qty">- 2 pack</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/97_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Trekking & Running Shoes - black</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Sports</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$25.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 250 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/98_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Womens Party Wear Shoes</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">party wear</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$62.00</span>
-                                        <span class="old-price">$65.00</span>
-                                        <span class="qty">- 1 kg</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/99_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Sports Claw Women's Shoes</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">sports</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$11.00</span>
-                                        <span class="qty">- 500 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/100_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Air Trekking Shoes - white</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">sports</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$52.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 1 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/101_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Boot With Suede Detail</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">boots</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$20.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 12 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/102_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Men's Leather Formal Wear shoes</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">formal</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$56.00</span>
-                                        <span class="old-price">$78.00</span>
-                                        <span class="qty">- 3 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/103_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Casual Men's Brown shoes</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Casual</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$50.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 2 pack</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!-- ec Top Rated -->
@@ -430,206 +84,33 @@
                 </div>
             </div>
             <div class="ec-new-slider">
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/112_1.jpg"
-                                        alt="Product" />
-                                </a>
+                @foreach ($toprateds as $toprated)
+                    <div class="col-sm-12 ec-all-product-block">
+                        <div class="ec-all-product-inner">
+                            <div class="ec-pro-image-outer">
+                                <div class="ec-pro-image">
+                                    <a href="product-left-sidebar.html" class="image">
+                                        <img class="main-image" src="{{ asset($toprated->productInfo->image) }}"
+                                            alt="Product" />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">platinum Zircon Classic Ring</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">jewellery</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$62.00</span>
-                                        <span class="old-price">$65.00</span>
-                                        <span class="qty">- 1 kg</span>
-                                    </span>
+                            <div class="ec-pro-content">
+                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $toprated->name }}</a></h5>
+                                <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ $toprated->category->title }}</a></h6>
+                                <div class="ec-pro-rat-price">
+                                    <div class="ec-pro-rat-pri-inner">
+                                        <span class="ec-price">
+                                            <span class="new-price">${{ $toprated->productInfo->sell_price }}.00</span>
+                                            <span class="old-price">${{ $toprated->productInfo->price }}.00</span>
+                                            <span class="qty">- 2 pack</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/105_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Smart watche Vital Plus</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Watches</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$56.00</span>
-                                        <span class="old-price">$78.00</span>
-                                        <span class="qty">- 3 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/110_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">shampoo conditioner packs</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">cosmetics</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$25.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 250 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/111_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Rose Gold Peacock Earrings</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">jewellery</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$20.00</span>
-                                        <span class="old-price">$30.00</span>
-                                        <span class="qty">- 12 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/106_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Pocket Watch Leather Pouch</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">watches</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$50.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 2 pack</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/107_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Silver Deer Heart Necklace</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">jewellery</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$52.00</span>
-                                        <span class="old-price">$55.00</span>
-                                        <span class="qty">- 1 pcs</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/108_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Titan 100 Ml Womens Perfume</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">perfume</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$10.00</span>
-                                        <span class="old-price">$11.00</span>
-                                        <span class="qty">- 500 g</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 ec-all-product-block">
-                    <div class="ec-all-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image" src="assets/images/product-image/109_1.jpg"
-                                        alt="Product" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">men's Leather Reversible Belt</a></h5>
-                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">belts</a></h6>
-                            <div class="ec-pro-rat-price">
-                                <div class="ec-pro-rat-pri-inner">
-                                    <span class="ec-price">
-                                        <span class="new-price">$42.00</span>
-                                        <span class="old-price">$45.00</span>
-                                        <span class="qty">- 5 kg</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -637,7 +118,6 @@
 
     <!-- Deal of the day Start -->
     <div class="row space-t-50" data-animation="fadeIn">
-        <!--  Special Section Start -->
         <div class="ec-spe-section col-lg-12 col-md-12 col-sm-12 sectopn-spc-mb">
             <div class="col-md-12">
                 <div class="section-title">
@@ -646,11 +126,12 @@
             </div>
 
             <div class="ec-spe-products">
+                @foreach ($offerDeals as $offerDeal)
                 <div class="ec-spe-product">
                     <div class="ec-spe-pro-inner">
                         <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
                             <div class="ec-spe-pro-image">
-                                <img class="img-responsive" src="assets/images/product-image/111_1.jpg" alt="">
+                                <img class="img-responsive" src="{{ asset($offerDeal->image) }}" alt="">
                             </div>
                         </div>
                         <div class="ec-spe-pro-content col-md-6 col-sm-12">
@@ -663,19 +144,18 @@
                                     <i class="ecicon eci-star"></i>
                                 </span>
                             </div>
-                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">Rose Gold diamonds Earring</a></h5>
-                            <div class="ec-spe-pro-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                dolor dolor sit amet consectetur Lorem ipsum dolor</div>
+                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">{{ $offerDeal->title }}</a></h5>
+                            <div class="ec-spe-pro-desc">{{ $offerDeal->description }}</div>
                             <div class="ec-spe-price">
-                                <span class="new-price">$1990.00</span>
-                                <span class="old-price">$2000.00</span>
+                                <span class="new-price">${{ $offerDeal->price }}.00</span>
+                                <span class="old-price">${{ $offerDeal->old_price }}.00</span>
                             </div>
                             <div class="ec-spe-pro-btn">
                                 <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
                             </div>
                             <div class="ec-spe-pro-progress">
                                 <span class="ec-spe-pro-progress-desc"><span>Already Sold:
-                                        <b>15</b></span><span>Available: <b>40</b></span></span>
+                                        <b>{{ $offerDeal->sold_count }}</b></span><span>Available: <b>{{ $offerDeal->available_count }}</b></span></span>
                                 <span class="ec-spe-pro-progressbar"></span>
                             </div>
                             <div class="countdowntimer">
@@ -686,47 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="ec-spe-product">
-                    <div class="ec-spe-pro-inner">
-                        <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
-                            <div class="ec-spe-pro-image">
-                                <img class="img-responsive"
-                                            src="assets/images/product-image/110_1.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="ec-spe-pro-content col-md-6 col-sm-12">
-                            <div class="ec-spe-pro-rating">
-                                <span class="ec-spe-rating-icon">
-                                    <i class="ecicon eci-star fill"></i>
-                                    <i class="ecicon eci-star fill"></i>
-                                    <i class="ecicon eci-star fill"></i>
-                                    <i class="ecicon eci-star"></i>
-                                    <i class="ecicon eci-star"></i>
-                                </span>
-                            </div>
-                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">shampoo, conditioner & facewash packs</a></h5>
-                            <div class="ec-spe-pro-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                dolor dolor sit amet consectetur Lorem ipsum dolor</div>
-                            <div class="ec-spe-price">
-                                <span class="new-price">$150.00</span>
-                                <span class="old-price">$200.00</span>
-                            </div>
-                            <div class="ec-spe-pro-btn">
-                                <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
-                            </div>
-                            <div class="ec-spe-pro-progress">
-                                <span class="ec-spe-pro-progress-desc"><span>Already Sold:
-                                        <b>20</b></span><span>Available: <b>40</b></span></span>
-                                <span class="ec-spe-pro-progressbar"></span>
-                            </div>
-                            <div class="countdowntimer">
-                                <span class="ec-spe-count-desc"> Hurry Up! Offer ends in:</span>
-                                <span id="ec-spe-count-2"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!--  Special Section End -->
@@ -781,9 +221,9 @@
                                             <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                     src="{{ asset('frontend') }}/assets/images/icons/pro_wishlist.svg"
                                                     class="svg_img pro_svg" alt="" /></a>
-                                            <a href="#" class="ec-btn-group quickview"
-                                                data-link-action="quickview" title="Quick view"
-                                                data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
+                                            <a href="#" class="ec-btn-group quickview" data-id="{{ $featured_product->id }}" data-name="{{ $featured_product->name }}" data-short_des="{{ $featured_product->short_des }}" data-price="{{ $featured_product->productInfo->price }}" data-sell_price="{{ $featured_product->productInfo->sell_price }}" data-size="{{ $featured_product->size->title }}" data-image="{{ $featured_product->productInfo->image }}"  data-sliderImages="{{ json_encode($featured_product->productSlider) }}"
+                                                data-link-action="quickview" id="viewBtn" title="Quick view"
+                                                data-bs-toggle="modal" data-bs-target="#quickViewModal{{ $featured_product->id }}" ><img
                                                     src="{{ asset('frontend') }}/assets/images/icons/quickview.svg"
                                                     class="svg_img pro_svg" alt="" /></a>
                                             <a href="compare.html" class="ec-btn-group compare"
@@ -813,15 +253,83 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- quick view modal start --}}
+                        <div class="modal fade" id="quickViewModal{{ $featured_product->id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-12 col-xs-12">
+                                                <!-- Swiper -->
+                                                <div class="qty-product-cover">
+                                                    @foreach ($featured_product->productSlider as $sliderImage)
+                                                    <div class="qty-slide">
+                                                        <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="qty-nav-thumb">
+                                                    @foreach ($featured_product->productSlider as $sliderImage)
+                                                    <div class="qty-slide">
+                                                        <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                                <div class="quickview-pro-content">
+                                                    <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
+                                                    <div class="ec-quickview-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </div>
+
+                                                    <div class="ec-quickview-desc">Lorem Ipsum is simply dummy text of the printing and
+                                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                                        since the 1500s,</div>
+                                                    <div class="ec-quickview-price">
+                                                        <span class="new-price">$199.00</span>
+                                                        <span class="old-price">$200.00</span>
+                                                    </div>
+
+                                                    <div class="ec-pro-variation">
+                                                        <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                            <span>Size</span>
+                                                            <div class="ec-pro-variation-content">
+                                                                <ul>
+                                                                    <li><span>250 g</span></li>
+                                                                    <li><span>500 g</span></li>
+                                                                    <li><span>1 kg</span></li>
+                                                                    <li><span>2 kg</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ec-quickview-qty">
+                                                        <div class="qty-plus-minus">
+                                                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                        </div>
+                                                        <div class="ec-quickview-cart ">
+                                                            <button class="btn btn-primary">Add To Cart</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- quick view modal end --}}
+
                         @endforeach
                     </div>
                 </div>
                 <!-- ec 1st Product tab end -->
-                {{-- @if(product_count == 0)
-                    <h1> Product Not Found </h1>
-                @else
-
-                @endif --}}
                 <!-- ec 2nd Product tab start -->
                 @foreach ($categories as $category)
                     <div class="tab-pane fade" id="cat_id{{ $category->id }}">
@@ -832,11 +340,13 @@
                                 <div class="ec-product-inner">
                                     <div class="ec-pro-image-outer">
                                         <div class="ec-pro-image">
-                                            <a href="{{ route('single_product', $featured_product->slug) }}" class="image">
-                                                <img class="main-image"
-                                                    src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                            <a href="{{ route('single_product', $featured_product->slug) }}">
+                                                <div class="image">
+                                                    <img class="main-image"
+                                                        src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                                    <img class="hover-image"
+                                                        src="{{ asset($featured_product->productInfo->image) }}" alt="Product" />
+                                                </div>
                                             </a>
                                             <div class="ec-pro-actions">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
@@ -844,7 +354,7 @@
                                                         class="svg_img pro_svg" alt="" /></a>
                                                 <a href="#" class="ec-btn-group quickview"
                                                     data-link-action="quickview" title="Quick view"
-                                                    data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
+                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal{{ $featured_product->id }}"><img
                                                         src="{{ asset('frontend') }}/assets/images/icons/quickview.svg"
                                                         class="svg_img pro_svg" alt="" /></a>
                                                 <a href="compare.html" class="ec-btn-group compare"
@@ -874,6 +384,79 @@
                                     </div>
                                 </div>
                             </div>
+
+                              {{-- quick view modal start --}}
+                        <div class="modal fade" id="quickViewModal{{ $featured_product->id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-12 col-xs-12">
+                                                <!-- Swiper -->
+                                                <div class="qty-product-cover">
+                                                    @foreach ($featured_product->productSlider as $sliderImage)
+                                                    <div class="qty-slide">
+                                                        <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="qty-nav-thumb">
+                                                    @foreach ($featured_product->productSlider as $sliderImage)
+                                                    <div class="qty-slide">
+                                                        <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                                <div class="quickview-pro-content">
+                                                    <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
+                                                    <div class="ec-quickview-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </div>
+
+                                                    <div class="ec-quickview-desc">Lorem Ipsum is simply dummy text of the printing and
+                                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                                        since the 1500s,</div>
+                                                    <div class="ec-quickview-price">
+                                                        <span class="new-price">$199.00</span>
+                                                        <span class="old-price">$200.00</span>
+                                                    </div>
+
+                                                    <div class="ec-pro-variation">
+                                                        <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                            <span>Size</span>
+                                                            <div class="ec-pro-variation-content">
+                                                                <ul>
+                                                                    <li><span>250 g</span></li>
+                                                                    <li><span>500 g</span></li>
+                                                                    <li><span>1 kg</span></li>
+                                                                    <li><span>2 kg</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ec-quickview-qty">
+                                                        <div class="qty-plus-minus">
+                                                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                        </div>
+                                                        <div class="ec-quickview-cart ">
+                                                            <button class="btn btn-primary">Add To Cart</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- quick view modal end --}}
                             @endif
                             @empty
                                 <h1>Product Not Found</h1>
@@ -889,3 +472,4 @@
     <!-- Product tab area end -->
 
 </div>
+

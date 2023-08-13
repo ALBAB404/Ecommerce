@@ -18,7 +18,7 @@
     - Common
     - Popup Model
     - Breadcrumb
-03. Layout 
+03. Layout
     - Header Section
     - Mainslider Section
     - Product Tab Section
@@ -48,7 +48,7 @@
     - Cart Page
     - Compare Page
     - Track Order Page
-    - Checkout Page    
+    - Checkout Page
     - Elements Tabs Page
     - Elements Categories Page
     - Elements Buttons Page
@@ -31546,7 +31546,7 @@ input[type=email]:focus::-webkit-input-placeholder {
    vendor Page CSS
    	- Single Vendor
    	- Multi Vendor
-   	- Vendor Sidebar 
+   	- Vendor Sidebar
    	- Vendor Dashboard
    	- Vendor Upload
    	- Vendor Profile
@@ -33666,3 +33666,33 @@ input[type=email]:focus::-webkit-input-placeholder {
   color: #777;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+
+ .search-form {
+            display: flex;
+            align-items: center;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-form input[type="text"] {
+            border: none;
+            padding: 5px;
+            flex-grow: 1;
+            outline: none;
+            background: transparent;
+        }
+
+        /* Style for the placeholder text */
+        .search-form input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        /* Style for the input on focus */
+        .search-form input[type="text"]:focus {
+            border-color: #007bff;
+        }

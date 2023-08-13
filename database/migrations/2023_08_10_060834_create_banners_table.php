@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('button_text');
             $table->string('status');
+            $table->integer('price')->nullable();
             $table->string('button_link')->nullable();
             $table->string('image');
             $table->timestamps();

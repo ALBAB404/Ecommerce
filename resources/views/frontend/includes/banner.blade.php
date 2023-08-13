@@ -12,7 +12,7 @@
                                     <h2 class="ec-slide-stitle">{{ $banner->subtitle }}</h2>
                                     <h1 class="ec-slide-title">{{ $banner->title }}</h1>
                                     <div class="ec-slide-desc">
-                                        <p>{{ $banner->content }} <b>29</b>.99</p>
+                                        <p>{{ $banner->content }} <b>{{ $banner->price }}</b>.99</p>
                                         <a href="#" class="btn btn-lg btn-primary">{{ $banner->button_text }} <i
                                                 class="ecicon eci-angle-double-right" aria-hidden="true"></i></a>
                                     </div>

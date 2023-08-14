@@ -155,5 +155,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 Route::get('/',[homeController::class, 'home'])->name('home');
 Route::get('/product/{product}',[singleProductController::class, 'singleProduct'])->name('single_product');
-Route::get('/product/{product}',[singleProductController::class, 'ActiveProduct'])->name('ActiveProduct');
+Route::get('/shop-product/{product}',[singleProductController::class, 'ActiveProduct'])->name('ActiveProduct');
 Route::get('/shop-page',[shopController::class, 'shopPage'])->name('shopPage');
+Route::get('/shop-page/{id}',[shopController::class, 'getProduct'])->name('getProduct');
+Route::get('/shop-category/{id}',[shopController::class, 'shopCategory'])->name('shopCategory');
+Route::get('/shop-price/{id}',[shopController::class, 'shopPrice'])->name('shopPrice');

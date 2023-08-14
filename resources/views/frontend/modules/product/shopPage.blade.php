@@ -150,8 +150,8 @@
                                     <option value="3">Latest Product</option>
                                     <option value="4">Tranding Product</option>
                                     <option value="5">Top Rated Product</option>
-                                    {{-- <option value="4">Price, low to high</option>
-                                    <option value="5">Price, high to low</option> --}}
+                                    <option value="6">Price, low to high</option>
+                                    <option value="7">Price, high to low</option>
                                 </select>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                     <!-- Shop content Start -->
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
-                            <div class="row">
+                            <div class="row" id="productContainer">
                                 @foreach ($products as $product)
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                     <div class="ec-product-inner">
@@ -177,8 +177,8 @@
                                                 </a>
                                                 {{-- <span class="percentage">20%</span> --}}
                                                 <a href="#" class="quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal{{ $product->id }}"
-                                                    data-bs-target="#ec_quickview_modal"><img
+                                                    title="Quick view" data-bs-toggle="modal"
+                                                    data-bs-target="#modal{{ $product->id }}"><img
                                                         src="{{ asset('frontend') }}/assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
@@ -194,6 +194,80 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {{-- quick view modal start --}}
+                                            <div class="modal fade" id="modal{{ $product->id }}" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                                                    <!-- Swiper -->
+                                                                    <div class="qty-product-cover">
+                                                                        @foreach ($product->productSlider as $sliderImage)
+                                                                        <div class="qty-slide">
+                                                                            <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                                        </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                    <div class="qty-nav-thumb">
+                                                                        @foreach ($product->productSlider as $sliderImage)
+                                                                        <div class="qty-slide">
+                                                                            <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                                        </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                                                    <div class="quickview-pro-content">
+                                                                        <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
+                                                                        <div class="ec-quickview-rating">
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star"></i>
+                                                                        </div>
+
+                                                                        <div class="ec-quickview-desc">Lorem Ipsum is simply dummy text of the printing and
+                                                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                                                            since the 1500s,</div>
+                                                                        <div class="ec-quickview-price">
+                                                                            <span class="new-price">$199.00</span>
+                                                                            <span class="old-price">$200.00</span>
+                                                                        </div>
+
+                                                                        <div class="ec-pro-variation">
+                                                                            <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                                                <span>Size</span>
+                                                                                <div class="ec-pro-variation-content">
+                                                                                    <ul>
+                                                                                        <li><span>250 g</span></li>
+                                                                                        <li><span>500 g</span></li>
+                                                                                        <li><span>1 kg</span></li>
+                                                                                        <li><span>2 kg</span></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="ec-quickview-qty">
+                                                                            <div class="qty-plus-minus">
+                                                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                                            </div>
+                                                                            <div class="ec-quickview-cart ">
+                                                                                <button class="btn btn-primary">Add To Cart</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       {{-- quick view modal end --}}
+
                                         <div class="ec-pro-content">
                                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $product->name }}</a></h5>
                                             <div class="ec-pro-rating">
@@ -259,43 +333,18 @@
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
+                                        @foreach ($categories as $category)
                                         <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" checked /> <a href="#">clothes</a><span
+                                            <div class="ec-sidebar-block-item ">
+                                                <input type="checkbox" class="categoryChecked" value="{{ $category->id }}" /> <a href="#">{{ $category->title }}</a><span
                                                     class="checked"></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Bags</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Shoes</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">cosmetics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">electrics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">phone</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li id="ec-more-toggle-content" style="padding: 0; display: none;">
+                                        @endforeach
+
+
+
+                                        {{-- <li id="ec-more-toggle-content" style="padding: 0; display: none;">
                                             <ul>
                                                 <li>
                                                     <div class="ec-sidebar-block-item">
@@ -316,7 +365,7 @@
                                                 <span class="checked"></span><span id="ec-more-toggle">More
                                                     Categories</span>
                                             </div>
-                                        </li>
+                                        </li> --}}
 
                                     </ul>
                                 </div>
@@ -328,89 +377,31 @@
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
+                                        @foreach ($sizes as $size)
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" checked /><a href="#">S</a><span
+                                                <input type="checkbox" class="sizeChecked" value="{{ $size->id }}" /><a href="#">{{ $size->title }}</a><span
                                                     class="checked"></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">M</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /> <a href="#">L</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">XL</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">XXL</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <!-- Sidebar Color item -->
-                            <div class="ec-sidebar-block ec-sidebar-block-clr">
+                            {{-- <div class="ec-sidebar-block ec-sidebar-block-clr">
                                 <div class="ec-sb-title">
                                     <h3 class="ec-sidebar-title">Color</h3>
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#c4d6f9;"></span></div>
+                                        @foreach ($colors as $color)
+                                        <li>{{ $color->title }}
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#ff748b;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#000000;"></span></div>
-                                        </li>
-                                        <li class="active">
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#2bff4a;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#ff7c5e;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#f155ff;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#ffef00;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#c89fff;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#7bfffa;"></span></div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item"><span
-                                                    style="background-color:#56ffc1;"></span></div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Sidebar Price Block -->
                             <div class="ec-sidebar-block">
                                 <div class="ec-sb-title">
@@ -418,15 +409,15 @@
                                 </div>
                                 <div class="ec-sb-block-content es-price-slider">
                                     <div class="ec-price-filter">
-                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                            data-max="250" data-step="10"></div>
+                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0" data-max="1050" data-step="10"></div>
                                         <div class="ec-price-input">
-                                            <label class="filter__label"><input type="text"
-                                                    class="filter__input"></label>
+                                            <label class="filter__label"><input type="text" class="filter__input lowPrice"></label>
                                             <span class="ec-price-divider"></span>
-                                            <label class="filter__label"><input type="text"
-                                                    class="filter__input"></label>
+                                            <label class="filter__label"><input type="text" class="filter__input highPrice"></label>
                                         </div>
+                                    </div>
+                                    <div class="text-center">
+                                       <button id="getPriceValuesButton" class="btn btn-sm btn-info mt-2 text-white">Get Price</button>
                                     </div>
                                 </div>
                             </div>
@@ -891,6 +882,7 @@
     </script>
     <!-- Main Js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         $('#myInput').on('keyup', function() {
@@ -900,16 +892,219 @@
             });
         });
 
+        // left side shorting
 
          $('#ec-select').on('change', function () {
             let status =  $(this).val()
-            getData(status);
+            let url = `/shop-page`
+            getData(status,url);
          })
 
-         const getData = (data) => {
+         // left side shorting end
 
-            console.log(data);
+     // right side category shorting start
+         $('.categoryChecked').on('change', function() {
+            var allCheckboxes = $('.categoryChecked'); // Get all checkboxes
+            if ($(this).is(':checked')) {
+                allCheckboxes.not(this).prop('disabled', true); // Disable other checkboxes
+                let status = $(this).val()
+                let url = `/shop-category`
+                getData(status,url)
+            } else {
+                allCheckboxes.prop('disabled', false); // Enable all checkboxes
+            }
+        });
+     // right side category shorting end
+     // right side size shorting start
+     $('.sizeChecked').on('change', function() {
+            var allCheckboxes = $('.sizeChecked'); // Get all checkboxes
+            if ($(this).is(':checked')) {
+                allCheckboxes.not(this).prop('disabled', true); // Disable other checkboxes
+                let status = $(this).val()
+                let url = `/shop-size`
+                getData(status,url)
+            } else {
+                allCheckboxes.prop('disabled', false); // Enable all checkboxes
+            }
+        });
+     // right side size shorting end
+     // right side price shorting start
+
+            var price = [];
+
+            function getCurrentPriceValues() {
+                var lowPrice = parseInt($(".lowPrice").val());
+                var highPrice = parseInt($(".highPrice").val());
+                return { lowPrice: lowPrice, highPrice: highPrice };
+            }
+
+            // Example usage: Retrieve and display current price values
+            $("#getPriceValuesButton").on("click", function() {
+                var priceValues = getCurrentPriceValues();
+                 price = [priceValues.lowPrice,priceValues.highPrice]
+                let url = `/shop-price`
+
+                getData(price,url)
+
+                // console.log("Low Price:", priceValues.lowPrice);
+                // console.log("High Price:", priceValues.highPrice);
+            });
+
+
+     // right side price shorting end
+
+
+
+
+         const getData = (status,url) => {
+             axios(`${url}/${status}`).then((res)=>{
+                let products =  res.data
+                let productHtml = '';
+                products.map((product)=>{
+                    // console.log(product);
+                    productHtml +=`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                    <div class="ec-product-inner">
+                                        <div class="ec-pro-image-outer">
+                                            <div class="ec-pro-image">
+                                                <a href="{{ route('ActiveProduct', $product->slug) }}">
+                                                    <div class="image">
+                                                        <img class="main-image"
+                                                            src="${product.product_info.image}" alt="Product" />
+                                                        <img class="hover-image"
+                                                            src="${product.product_info.image}" alt="Product" />
+                                                    </div>
+                                                </a>
+                                                {{-- <span class="percentage">20%</span> --}}
+                                                <a href="#" class="quickview" data-link-action="quickview"
+                                                    title="Quick view" data-bs-toggle="modal"
+                                                    data-bs-target="#modal${product.id}"><img
+                                                        src="{{ asset('frontend') }}/assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        alt="" /></a>
+                                                <div class="ec-pro-actions">
+                                                    <a href="compare.html" class="ec-btn-group compare"
+                                                        title="Compare"><img src="{{ asset('frontend') }}/assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                            src="{{ asset('frontend') }}/assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart</button>
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="{{ asset('frontend') }}/assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        {{-- quick view modal start --}}
+
+                                            <div class="modal fade" id="modal${product.id }" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                                                    <!-- Swiper -->
+                                                                    <div class="qty-product-cover">
+                                                                        <div class="qty-slide">
+                                                                            <img class="img-responsive" src="${product.product_info.image}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                                                    <div class="quickview-pro-content">
+                                                                        <h5 class="ec-quick-title"><a href="product-left-sidebar.html">${product.name}</a></h5>
+                                                                        <div class="ec-quickview-rating">
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star"></i>
+                                                                        </div>
+
+                                                                        <div class="ec-quickview-desc">${product.short_des}...</div>
+                                                                        <div class="ec-quickview-price">
+                                                                            <span class="new-price">$${product.product_info.sell_price}.00</span>
+                                                                            <span class="old-price">$${product.product_info.price}.00</span>
+                                                                        </div>
+
+                                                                        <div class="ec-pro-variation">
+                                                                            <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                                                <span>Size</span>
+                                                                                <div class="ec-pro-variation-content">
+                                                                                    <ul>
+                                                                                        <li><span>${product.size.title}</span></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="ec-quickview-qty">
+                                                                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
+                                                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
+                                                                            <div class="inc ec_qtybtn">+</div></div>
+                                                                            <div class="ec-quickview-cart ">
+                                                                                <button class="btn btn-primary">Add To Cart</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                       {{-- quick view modal end --}}
+
+
+
+
+                                        <div class="ec-pro-content">
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">${product.name}</a></h5>
+                                            <div class="ec-pro-rating">
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star"></i>
+                                            </div>
+                                            <div class="ec-pro-list-desc">${product.short_des}</div>
+                                            <span class="ec-price">
+                                                <span class="old-price">${ product.product_info.price }.00</span>
+                                                <span class="new-price">${product.product_info.sell_price}.00</span>
+                                            </span>
+                                            <div class="ec-pro-option">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active"><a href="#" class="ec-opt-clr-img"
+                                                                data-src="{{ asset('frontend') }}/assets/images/product-image/6_1.jpg"
+                                                                data-src-hover="assets/images/product-image/6_1.jpg"
+                                                                data-tooltip="Gray"><span
+                                                                    style="background-color:#e8c2ff;">${product.color.title}</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ec-pro-size">
+                                                    <span class="ec-pro-opt-label">Size</span>
+                                                    <ul class="ec-opt-size">
+                                                        <li class="active"><a href="#" class="ec-opt-sz"
+                                                                data-old="$25.00" data-new="$20.00"
+                                                                data-tooltip="Small">${product.size.title}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                })
+                document.getElementById('productContainer').innerHTML = productHtml;
+             })
          }
+
+
     </script>
 
 

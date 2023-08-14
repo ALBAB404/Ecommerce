@@ -54,7 +54,7 @@
                                 @foreach ($featured_products as $featured_product)
                                 <div>
                                     <div class="ec-sb-pro-sl-item">
-                                        <a href="{{ route('single_product', $featured_product->slug) }}" class="sidekka_pro_img"><img
+                                        <a href="" class="sidekka_pro_img"><img
                                                 src="{{ asset( $featured_product->productInfo->image ) }}" alt="product" /></a>
                                         <div class="ec-pro-content">
                                             <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $featured_product->name }}</a></h5>

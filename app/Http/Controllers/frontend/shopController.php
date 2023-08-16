@@ -59,11 +59,14 @@ class shopController extends Controller
         // dd($products);
         return response()->json($products);
     }
-    public function shopPrice($id)
+    public function shopPrice($lowPrice, $highPrice)
     {
-        $productItems =  product::with('productInfo')->latest()->get();
-        $productItems->whereBetween('price',[$id[0], $id[1]])->get();
-        // dd($productItems);
-        return response()->json($products);
+        $products = Product::with('productInfo')
+            ->whereHas('productInfo', function ($query) use ($highPrice, $lowPrice) {
+                $query->whereBetween('sell_price', [$lowPrice, $highPrice]);
+            })
+            ->get();
+            return response()->json($products);
+        // dd($products);
     }
 }

@@ -179,14 +179,14 @@
                                                 <a href="#" class="quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
                                                     data-bs-target="#modal{{ $product->id }}"><img
-                                                        src="{{ asset('frontend') }}/assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        src="{{ asset('frontend/assets/images/icons/quickview.svg') }}" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
                                                     <a href="compare.html" class="ec-btn-group compare"
-                                                        title="Compare"><img src="{{ asset('frontend') }}/assets/images/icons/compare.svg"
+                                                        title="Compare"><img src="{{ asset('frontend/assets/images/icons/compare.svg') }}"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                                            src="{{ asset('frontend') }}/assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                    <button title="Add To Cart" id="addToCart" data-id="{{ $product->id }}" class="add-to-cart"><img
+                                                            src="{{ asset('frontend/assets/images/icons/cart.svg') }}" class="svg_img pro_svg"
                                                             alt="" /> Add To Cart</button>
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="{{ asset('frontend') }}/assets/images/icons/wishlist.svg"
@@ -929,33 +929,165 @@
         });
      // right side size shorting end
      // right side price shorting start
-
             var price = [];
-
             function getCurrentPriceValues() {
                 var lowPrice = parseInt($(".lowPrice").val());
                 var highPrice = parseInt($(".highPrice").val());
                 return { lowPrice: lowPrice, highPrice: highPrice };
             }
-
             // Example usage: Retrieve and display current price values
             $("#getPriceValuesButton").on("click", function() {
                 var priceValues = getCurrentPriceValues();
                  price = [priceValues.lowPrice,priceValues.highPrice]
-                let url = `/shop-price`
+                 let url = `/shop-price/${price[0]}/${price[1]}`;
 
-                getData(price,url)
+                axios.get(url).then(res => {
+                    let products =  res.data
+                let productHtml = '';
+                products.map((product)=>{
+                    // console.log(product);
+                    productHtml +=`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                    <div class="ec-product-inner">
+                                        <div class="ec-pro-image-outer">
+                                            <div class="ec-pro-image">
+                                                <a href="{{ route('ActiveProduct', $product->slug) }}">
+                                                    <div class="image">
+                                                        <img class="main-image"
+                                                            src="${product.product_info.image}" alt="Product" />
+                                                        <img class="hover-image"
+                                                            src="${product.product_info.image}" alt="Product" />
+                                                    </div>
+                                                </a>
+                                                {{-- <span class="percentage">20%</span> --}}
+                                                <a href="#" class="quickview" data-link-action="quickview"
+                                                    title="Quick view" data-bs-toggle="modal"
+                                                    data-bs-target="#modal${product.id}"><img
+                                                        src="{{ asset('frontend') }}/assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        alt="" /></a>
+                                                <div class="ec-pro-actions">
+                                                    <a href="compare.html" class="ec-btn-group compare"
+                                                        title="Compare"><img src="{{ asset('frontend') }}/assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                            src="{{ asset('frontend') }}/assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart</button>
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="{{ asset('frontend') }}/assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                // console.log("Low Price:", priceValues.lowPrice);
-                // console.log("High Price:", priceValues.highPrice);
+
+
+
+                                        {{-- quick view modal start --}}
+
+                                            <div class="modal fade" id="modal${product.id }" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                                                    <!-- Swiper -->
+                                                                    <div class="qty-product-cover">
+                                                                        <div class="qty-slide">
+                                                                            <img class="img-responsive" src="${product.product_info.image}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                                                    <div class="quickview-pro-content">
+                                                                        <h5 class="ec-quick-title"><a href="product-left-sidebar.html">${product.name}</a></h5>
+                                                                        <div class="ec-quickview-rating">
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star fill"></i>
+                                                                            <i class="ecicon eci-star"></i>
+                                                                        </div>
+
+                                                                        <div class="ec-quickview-desc">${product.short_des}...</div>
+                                                                        <div class="ec-quickview-price">
+                                                                            <span class="new-price">$${product.product_info.sell_price}.00</span>
+                                                                            <span class="old-price">$${product.product_info.price}.00</span>
+                                                                        </div>
+
+                                                                        <div class="ec-pro-variation">
+                                                                            <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                                                <span>Size</span>
+                                                                                <div class="ec-pro-variation-content">
+                                                                                    <ul>
+                                                                                        <li><span>${product.size.title}</span></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="ec-quickview-qty">
+                                                                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
+                                                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
+                                                                            <div class="inc ec_qtybtn">+</div></div>
+                                                                            <div class="ec-quickview-cart ">
+                                                                                <button class="btn btn-primary">Add To Cart</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                       {{-- quick view modal end --}}
+
+
+
+
+                                        <div class="ec-pro-content">
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">${product.name}</a></h5>
+                                            <div class="ec-pro-rating">
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star fill"></i>
+                                                <i class="ecicon eci-star"></i>
+                                            </div>
+                                            <div class="ec-pro-list-desc">${product.short_des}</div>
+                                            <span class="ec-price">
+                                                <span class="old-price">${ product.product_info.price }.00</span>
+                                                <span class="new-price">${product.product_info.sell_price}.00</span>
+                                            </span>
+                                            <div class="ec-pro-option">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active"><a href="#" class="ec-opt-clr-img"
+                                                                data-src="{{ asset('frontend') }}/assets/images/product-image/6_1.jpg"
+                                                                data-src-hover="assets/images/product-image/6_1.jpg"
+                                                                data-tooltip="Gray"><span
+                                                                    style="background-color:#e8c2ff;">${product.color.title}</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ec-pro-size">
+                                                    <span class="ec-pro-opt-label">Size</span>
+                                                    <ul class="ec-opt-size">
+                                                        <li class="active"><a href="#" class="ec-opt-sz"
+                                                                data-old="$25.00" data-new="$20.00"
+                                                                data-tooltip="Small">${product.size.title}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                })
+                document.getElementById('productContainer').innerHTML = productHtml;
+                })
             });
-
-
      // right side price shorting end
-
-
-
-
          const getData = (status,url) => {
              axios(`${url}/${status}`).then((res)=>{
                 let products =  res.data
@@ -1103,6 +1235,19 @@
                 document.getElementById('productContainer').innerHTML = productHtml;
              })
          }
+
+
+
+
+
+
+         // cart add start
+
+         $('.add-to-cart').on('click',function(e) {
+            e.preventDefault()
+            let id =  $(this).data('id')
+            console.log(id);
+         })
 
 
     </script>

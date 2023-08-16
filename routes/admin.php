@@ -159,4 +159,5 @@ Route::get('/shop-product/{product}',[singleProductController::class, 'ActivePro
 Route::get('/shop-page',[shopController::class, 'shopPage'])->name('shopPage');
 Route::get('/shop-page/{id}',[shopController::class, 'getProduct'])->name('getProduct');
 Route::get('/shop-category/{id}',[shopController::class, 'shopCategory'])->name('shopCategory');
-Route::get('/shop-price/{id}',[shopController::class, 'shopPrice'])->name('shopPrice');
+Route::get('/shop-size/{id}',[shopController::class, 'shopSize'])->name('shopSize');
+Route::get('/shop-price/{lowPrice}/{highPrice}', [ShopController::class, 'shopPrice'])->name('shopPrice');

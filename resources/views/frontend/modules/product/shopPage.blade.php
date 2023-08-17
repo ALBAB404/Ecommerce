@@ -29,43 +29,8 @@
                     <span class="cart_title">My Cart</span>
                     <button class="ec-close">×</button>
                 </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{{ asset('frontend') }}/assets/images/product-image/6_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{{ asset('frontend') }}/assets/images/product-image/12_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{{ asset('frontend') }}/assets/images/product-image/3_1.jpg" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
+                <ul class="eccart-pro-items" id="myTable">
+
                 </ul>
             </div>
             <div class="ec-cart-bottom">
@@ -74,7 +39,7 @@
                         <tbody>
                             <tr>
                                 <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
+                                <td class="text-right cartPrice">$300.00</td>
                             </tr>
                             <tr>
                                 <td class="text-left">VAT (20%) :</td>
@@ -88,7 +53,7 @@
                     </table>
                 </div>
                 <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
+                    <a href="{{ route('cart.create') }}" class="btn btn-primary">View Cart</a>
                     <a href="checkout.html" class="btn btn-secondary">Checkout</a>
                 </div>
             </div>
@@ -185,9 +150,6 @@
                                                     <a href="compare.html" class="ec-btn-group compare"
                                                         title="Compare"><img src="{{ asset('frontend/assets/images/icons/compare.svg') }}"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" id="addToCart" data-id="{{ $product->id }}" class="add-to-cart"><img
-                                                            src="{{ asset('frontend/assets/images/icons/cart.svg') }}" class="svg_img pro_svg"
-                                                            alt="" /> Add To Cart</button>
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="{{ asset('frontend') }}/assets/images/icons/wishlist.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
@@ -205,23 +167,16 @@
                                                                 <div class="col-md-5 col-sm-12 col-xs-12">
                                                                     <!-- Swiper -->
                                                                     <div class="qty-product-cover">
-                                                                        @foreach ($product->productSlider as $sliderImage)
+                                                                        {{-- @foreach ($product->productInfo as $sliderImage) --}}
                                                                         <div class="qty-slide">
-                                                                            <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
+                                                                            <img class="img-responsive" src="{{ asset($product->productInfo->image) }}" alt="">
                                                                         </div>
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <div class="qty-nav-thumb">
-                                                                        @foreach ($product->productSlider as $sliderImage)
-                                                                        <div class="qty-slide">
-                                                                            <img class="img-responsive" src="{{ asset($sliderImage->image) }}" alt="">
-                                                                        </div>
-                                                                        @endforeach
+                                                                        {{-- @endforeach --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-7 col-sm-12 col-xs-12">
                                                                     <div class="quickview-pro-content">
-                                                                        <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Mens Winter Leathers Jackets</a></h5>
+                                                                        <h5 class="ec-quick-title"><a href="product-left-sidebar.html">{{ $product->name }}</a></h5>
                                                                         <div class="ec-quickview-rating">
                                                                             <i class="ecicon eci-star fill"></i>
                                                                             <i class="ecicon eci-star fill"></i>
@@ -230,12 +185,10 @@
                                                                             <i class="ecicon eci-star"></i>
                                                                         </div>
 
-                                                                        <div class="ec-quickview-desc">Lorem Ipsum is simply dummy text of the printing and
-                                                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                                            since the 1500s,</div>
+                                                                        <div class="ec-quickview-desc">{!! $product->short_des !!}</div>
                                                                         <div class="ec-quickview-price">
-                                                                            <span class="new-price">$199.00</span>
-                                                                            <span class="old-price">$200.00</span>
+                                                                            <span class="new-price">${{ $product->productInfo->sell_price  }}.00</span>
+                                                                            <span class="old-price">${{ $product->productInfo->price }}.00</span>
                                                                         </div>
 
                                                                         <div class="ec-pro-variation">
@@ -243,20 +196,17 @@
                                                                                 <span>Size</span>
                                                                                 <div class="ec-pro-variation-content">
                                                                                     <ul>
-                                                                                        <li><span>250 g</span></li>
-                                                                                        <li><span>500 g</span></li>
-                                                                                        <li><span>1 kg</span></li>
-                                                                                        <li><span>2 kg</span></li>
+                                                                                        <li><span>{{ $product->size->title }}</span></li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="ec-quickview-qty">
                                                                             <div class="qty-plus-minus">
-                                                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                                                <input class="qty-input" id="product_quantity_{{ $product->id }}"   type="text" name="ec_qtybtn" value="1" />
                                                                             </div>
                                                                             <div class="ec-quickview-cart ">
-                                                                                <button class="btn btn-primary">Add To Cart</button>
+                                                                                <button id="addToCart_{{ $product->id }}" data-id="{{ $product->id }}" class="btn btn-primary addToCart">Add To Cart</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -570,7 +520,7 @@
     <!-- Footer Area End -->
 
     <!-- Modal -->
-    <div class="modal fade" id="ec_quickview_modal{{ $product->id }}" tabindex="-1" role="dialog">
+    {{-- <div class="modal fade" id="ec_quickview_modal{{ $product->id }}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -673,7 +623,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Modal end -->
 
     <!-- Footer navigation panel for responsive display -->
@@ -722,7 +672,7 @@
     <!-- Cart Floating Button -->
     <div class="ec-cart-float">
         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="{{ asset('frontend') }}/assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
+            <div class="header-icon"><img src="{{ asset('frontend/assets/images/icons/cart.svg') }}" class="svg_img header_svg" alt="" /></div>
             <span class="ec-cart-count cart-count-lable">3</span>
         </a>
     </div>
@@ -892,15 +842,13 @@
             });
         });
 
-        // left side shorting
-
+     // left side shorting
          $('#ec-select').on('change', function () {
             let status =  $(this).val()
             let url = `/shop-page`
             getData(status,url);
          })
-
-         // left side shorting end
+     // left side shorting end
 
      // right side category shorting start
          $('.categoryChecked').on('change', function() {
@@ -916,7 +864,7 @@
         });
      // right side category shorting end
      // right side size shorting start
-     $('.sizeChecked').on('change', function() {
+         $('.sizeChecked').on('change', function() {
             var allCheckboxes = $('.sizeChecked'); // Get all checkboxes
             if ($(this).is(':checked')) {
                 allCheckboxes.not(this).prop('disabled', true); // Disable other checkboxes
@@ -929,13 +877,13 @@
         });
      // right side size shorting end
      // right side price shorting start
-            var price = [];
-            function getCurrentPriceValues() {
-                var lowPrice = parseInt($(".lowPrice").val());
-                var highPrice = parseInt($(".highPrice").val());
-                return { lowPrice: lowPrice, highPrice: highPrice };
-            }
-            // Example usage: Retrieve and display current price values
+        var price = [];
+        function getCurrentPriceValues() {
+            var lowPrice = parseInt($(".lowPrice").val());
+            var highPrice = parseInt($(".highPrice").val());
+            return { lowPrice: lowPrice, highPrice: highPrice };
+        }
+     // Example usage: Retrieve and display current price values
             $("#getPriceValuesButton").on("click", function() {
                 var priceValues = getCurrentPriceValues();
                  price = [priceValues.lowPrice,priceValues.highPrice]
@@ -1235,19 +1183,79 @@
                 document.getElementById('productContainer').innerHTML = productHtml;
              })
          }
+    // Fetch Data To Cart start
+        const getCartData = () =>{
+            axios.get('/cart/index').then((res)=>{
+                let cartItems =  res.data
+                updateCartCount(cartItems.length);
+                    myTable(cartItems)
 
+            })
+        }
+        function myTable(cartItems) {
+                $('#myTable').empty();
+                let totalPrice = 0;
+                cartItems.map(cartItem => {
+                    totalPrice += cartItem.product.product_info.sell_price *cartItem.quantity
+                $('#myTable').append(`
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="${cartItem.product.product_info.image}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">${cartItem.product.name}</a>
+                            <span class="cart-price"><span>$${cartItem.product.product_info.sell_price}.00</span> x ${cartItem.quantity}</span>
+                            <a href="javascript:void(0)" class="remove" data-id="${cartItem.id}" >×</a>
+                        </div>
+                    </li>
+                `);
+            });
+        // cart er total amount er function
+                updateTotalPrice(totalPrice)
+            }
+        getCartData()
+        // Fetch Data To Cart End
 
+        //cart item show in headerstart
+        function updateCartCount(count) {
+            $('.cart-count-lable').text(count);
+        }
+        //cart item show in header end
+        //cart item total price show in header  start
+        function updateTotalPrice(price) {
+            $('.cartPrice').text(`$${price.toFixed(2)}`);
+        }
+        //cart item total price show in header  end
 
-
-
-
-         // cart add start
-
-         $('.add-to-cart').on('click',function(e) {
+        // cart item insert
+            $('[id^=addToCart_]').on('click', function(e){
+                e.preventDefault();
+                let product_id =           $(this).data('id')
+                let product_quantity =    parseInt($('#product_quantity_' + product_id).val(), 10);
+                                        // parseInt($('.product_quantity').val(), 10);
+                // console.log(product_id , product_quantity);
+                axios.post(`/cart`,{product_id:product_id,product_quantity:product_quantity}).then((res)=>{
+                    getCartData()
+                    $('#modal' + product_id).modal('hide');  // Close the modal
+            })
+            })
+        // cart item show
+        // Delete Cart start
+        $('body').on('click', '.remove', function(e) {
             e.preventDefault()
-            let id =  $(this).data('id')
-            console.log(id);
-         })
+            let delID = $(this).data('id')
+            // let row = $(this).closest('tr');
+            // let delID =  $(this).data('id')
+            // console.log(delID);
+            // let rowToDelete = $(this).closest('tr');
+            axios.delete(`/cart/destroy/${delID}`).then((res) => {
+                // row.remove();
+                getCartData()
+            }).catch((err) => {
+
+            });
+
+        })
+        // Delete Cart end
 
 
     </script>

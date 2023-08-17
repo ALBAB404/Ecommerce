@@ -50,5 +50,9 @@ Route::prefix('customer')->name('customer.')->controller(customerAuthController:
 
 // frontend Cart route
 Route::prefix('cart')->name('cart.')->controller(CartController::class)->middleware('auth:customer')->group(function () {
-   route::get('/','index');
+    route::get('/index','index');
+    route::get('/','create')->name('create');
+   route::post('/','store');
+   route::post('/update/{id}','update');
+   route::delete('/destroy/{id}','destroy');
 });

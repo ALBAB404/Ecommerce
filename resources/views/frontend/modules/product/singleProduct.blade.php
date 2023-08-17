@@ -140,12 +140,14 @@
                                             </div>
                                         </div>
                                         <div class="ec-single-qty">
+                                            {{-- <form action="" method="post"> --}}
                                             <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                <input class="qty-input" type="text" id="product_quantity"  name="ec_qtybtn" value= 1 />
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
-                                            </div>
+                                                    <button id="addToCart" data-id="{{ $product->id }}" class="btn btn-primary">Add To Cart</button>
+                                                </div>
+                                            {{-- </form> --}}
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                         src="{{ asset('frontend') }}/assets/images/icons/wishlist.svg" class="svg_img pro_svg"
@@ -1213,6 +1215,28 @@
     <!-- Main Js -->
     <script src="{{ asset('frontend') }}/assets/js/vendor/index.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- @push('js') --}}
+       <script>
+
+        // cart item insert
+
+        $('#addToCart').on('click', function(e){
+            e.preventDefault();
+        let product_id =           $(this).data('id')
+        let product_quantity =      parseInt($('#product_quantity').val(), 10);
+        axios.post(`/cart`,{product_id:product_id,product_quantity:product_quantity}).then((res)=>{
+            console.log(res.data);
+        })
+        console.log(product_id , product_quantity);
+        })
+
+        // cart item show
+       </script>
+    {{-- @endpush --}}
+
 
 </body>
 </html>

@@ -11,93 +11,46 @@
                                 <div class="row">
                                     <form action="#">
                                         <div class="table-content cart-table-content">
-                                            <table>
+                                            <table class="dataLoad">
                                                 <thead>
                                                     <tr>
                                                         <th>Product</th>
                                                         <th>Price</th>
                                                         <th style="text-align: center;">Quantity</th>
+                                                        {{-- <th>Update</th> --}}
                                                         <th>Total</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                @php
+                                                    $TotalCount = 0
+                                                @endphp
+                                                <tbody id="myTable">
+                                                    @foreach ($cartItems as $cartItem)
                                                     <tr>
+                                                        @php
+                                                            $TotalCount += $cartItem->product->productInfo->sell_price * $cartItem->quantity ;
+                                                        @endphp
                                                         <td data-label="Product" class="ec-cart-pro-name"><a
                                                                 href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                    src="{{ asset('frontend') }}/assets/images/product-image/1.jpg"
-                                                                    alt="" />Stylish Baby Shoes</a></td>
+                                                                    src="{{ asset($cartItem->product->productInfo->image) }}"
+                                                                    alt="" />{{ $cartItem->product->name }}</a></td>
                                                         <td data-label="Price" class="ec-cart-pro-price"><span
-                                                                class="amount">$56.00</span></td>
+                                                                class="amount">${{ $cartItem->product->productInfo->sell_price }}.00</span></td>
                                                         <td data-label="Quantity" class="ec-cart-pro-qty"
                                                             style="text-align: center;">
                                                             <div class="cart-qty-plus-minus">
                                                                 <input class="cart-plus-minus" type="text"
-                                                                    name="cartqtybutton" value="1" />
+                                                                    name="cartqtybutton" value="{{ $cartItem->quantity }}" />
                                                             </div>
+                                                            <button class="btn btn-sm btn-success updateQuantity" data-id="{{ $cartItem->product->id }}">Update</button>
                                                         </td>
-                                                        <td data-label="Total" class="ec-cart-pro-subtotal">$56.00</td>
+                                                        <td data-label="Total" class="ec-cart-pro-subtotal">${{ $cartItem->quantity * $cartItem->product->productInfo->sell_price }}.00</td>
                                                         <td data-label="Remove" class="ec-cart-pro-remove">
-                                                            <a href="#"><i class="ecicon eci-trash-o"></i></a>
+                                                            <a href="#" class="delBtn" data-id="{{ $cartItem->id }}"><i class="ecicon eci-trash-o"></i></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td data-label="Product" class="ec-cart-pro-name"><a
-                                                                href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                    src="{{ asset('frontend') }}/assets/images/product-image/2.jpg"
-                                                                    alt="" />Unisex Fully Solid Hoodie</a></td>
-                                                        <td data-label="Price" class="ec-cart-pro-price"><span
-                                                                class="amount">$75.00</span></td>
-                                                        <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                            style="text-align: center;">
-                                                            <div class="cart-qty-plus-minus">
-                                                                <input class="cart-plus-minus" type="text"
-                                                                    name="cartqtybutton" value="1" />
-                                                            </div>
-                                                        </td>
-                                                        <td data-label="Total" class="ec-cart-pro-subtotal">$75.00</td>
-                                                        <td data-label="Remove" class="ec-cart-pro-remove">
-                                                            <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-label="Product" class="ec-cart-pro-name"><a
-                                                                href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                    src="{{ asset('frontend') }}/assets/images/product-image/3.jpg"
-                                                                    alt="" />Beautiful T-shirt For Women</a></td>
-                                                        <td data-label="Price" class="ec-cart-pro-price"><span
-                                                                class="amount">$48.00</span></td>
-                                                        <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                            style="text-align: center;">
-                                                            <div class="cart-qty-plus-minus">
-                                                                <input class="cart-plus-minus" type="text"
-                                                                    name="cartqtybutton" value="1" />
-                                                            </div>
-                                                        </td>
-                                                        <td data-label="Total" class="ec-cart-pro-subtotal">$48.00</td>
-                                                        <td data-label="Remove" class="ec-cart-pro-remove">
-                                                            <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-label="Product" class="ec-cart-pro-name"><a
-                                                                href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                    src="{{ asset('frontend') }}/assets/images/product-image/4.jpg"
-                                                                    alt="" />Wool Hat For Men</a></td>
-                                                        <td data-label="Price" class="ec-cart-pro-price"><span
-                                                                class="amount">$95.00</span></td>
-                                                        <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                            style="text-align: center;">
-                                                            <div class="cart-qty-plus-minus">
-                                                                <input class="cart-plus-minus" type="text"
-                                                                    name="cartqtybutton" value="1" />
-                                                            </div>
-                                                        </td>
-                                                        <td data-label="Total" class="ec-cart-pro-subtotal">$95.00</td>
-                                                        <td data-label="Remove" class="ec-cart-pro-remove">
-                                                            <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -170,7 +123,7 @@
                                         <div class="ec-cart-summary">
                                             <div>
                                                 <span class="text-left">Sub-Total</span>
-                                                <span class="text-right">$80.00</span>
+                                                <span class="text-right" id="totalPrice">${{ $TotalCount }}.00</span>
                                             </div>
                                             <div>
                                                 <span class="text-left">Delivery Charges</span>
@@ -524,3 +477,96 @@
         </section>
         <!-- New Product end -->
 @endsection
+
+@push('js')
+    <script>
+
+
+    //     // Fetch Data To Cart start
+
+    //     const getCartData = () =>{
+    //         axios.get('/cart/index').then((res)=>{
+    //             let cartItems =  res.data
+    //            myTable(cartItems)
+    //         })
+    //     }
+
+    //     function myTable(cartItems) {
+    //         $('#myTable').empty();
+    //         cartItems.map(cartItem => {
+    //             // console.log(cartItem.product.product_info.image);
+    //         $('#myTable').append(`
+    //         <tr>
+    //             <td data-label="Product" class="ec-cart-pro-name"><a
+    //                     href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+    //                         src="${cartItem.product.product_info.image}"
+    //                         alt="" />${cartItem.product.name}</a></td>
+    //             <td data-label="Price" class="ec-cart-pro-price"><span
+    //                     class="amount">${cartItem.product.product_info.sell_price}.00</span></td>
+    //             <td data-label="Quantity" class="ec-cart-pro-qty"
+    //                 style="text-align: center;">
+    //                 <div class="cart-qty-plus-minus">
+    //                     <input class="cart-plus-minus" type="text"
+    //                         name="cartqtybutton" value="${cartItem.quantity}" />
+    //                 </div>
+    //                 <button class="btn btn-sm btn-success updateQuantity" data-id="${cartItem.product.id}">Update</button>
+    //             </td>
+    //             <td data-label="Total" id="totalPrice" class="ec-cart-pro-subtotal">$${cartItem.quantity * cartItem.product.product_info.sell_price}.00</td>
+    //             <td data-label="Remove" class="ec-cart-pro-remove">
+    //                 <a href="#" class="delBtn" data-id="${cartItem.id}"><i class="ecicon eci-trash-o"></i></a>
+    //             </td>
+    //         </tr>
+    //         `);
+    //     });
+    // }
+    //     Fetch Data To Cart End
+
+        // update price code start
+        function updateTotalPrice() {
+            let total = 0;
+            $("#myTable tr").each(function() {
+                let price = parseFloat($(this).find('.ec-cart-pro-subtotal').text().replace('$', ''));
+                if (!isNaN(price)) total += price;
+             });
+
+            // Display the updated total
+            $("#totalPrice").text(`$${total.toFixed(2)}`);
+        }
+        // update price code end
+
+        // Update Cart start
+        $('body').on('click','.updateQuantity', function(e){
+            e.preventDefault()
+            let row = $(this).closest('tr')
+            let product_id = $(this).data('id')
+            let product_quantity = row.find('.cart-plus-minus').val()
+            axios.post(`/cart/update/${product_id}`,{product_quantity:product_quantity}).then((res)=>{
+                let updatedPrice = res.data
+                row.find('.ec-cart-pro-subtotal').text(`$${updatedPrice}`);
+                updateTotalPrice();
+                // console.log(updatedPrice);
+            })
+        })
+
+        // Update Cart end
+        // Delete Cart start
+
+        $('body').on('click', '.delBtn', function(e) {
+            e.preventDefault()
+            let row = $(this).closest('tr');
+            let delID =  $(this).data('id')
+            console.log(delID);
+            let rowToDelete = $(this).closest('tr');
+            axios.delete(`/cart/destroy/${delID}`).then((res) => {
+                row.remove();
+                updateTotalPrice();
+            }).catch((err) => {
+
+            });
+
+        })
+
+        // Delete Cart end
+
+    </script>
+@endpush

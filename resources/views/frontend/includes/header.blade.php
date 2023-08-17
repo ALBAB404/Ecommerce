@@ -192,7 +192,7 @@
         @include('frontend.includes.nav')
     <!-- Ec Main Menu End -->
     <!-- ekka Mobile Menu Start -->
-    <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+    {{-- <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
         <div class="ec-menu-title">
             <span class="menu_title">My Menu</span>
             <button class="ec-close">×</button>
@@ -425,13 +425,13 @@
                 <!-- Social End -->
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ekka mobile Menu End -->
 </header>
 
 
     <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
+    {{-- <div class="ec-side-cart-overlay"></div>
     <div id="ec-side-cart" class="ec-side-cart">
         <div class="ec-cart-inner">
             <div class="ec-cart-top">
@@ -503,5 +503,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ekka Cart End -->

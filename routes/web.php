@@ -3,6 +3,7 @@
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\checkoutController;
 use App\Http\Controllers\frontend\customerAuthController;
+use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\globalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -62,8 +63,13 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->middlew
 // frontend Checkout route
 Route::prefix('checkout')->name('checkout.')->controller(checkoutController::class)->middleware('auth:customer')->group(function () {
     route::get('/index','index')->name('index');
-//     route::get('/','create')->name('create');
     route::post('/','store');
-//    route::post('/update/{id}','update');
-//    route::delete('/destroy/{id}','destroy');
+});
+
+// frontend Order route
+Route::prefix('order')->name('order.')->controller(OrderController::class)->middleware('auth:customer')->group(function () {
+    route::get('/','index')->name('index');
+    route::get('/order-tracking','order_tracking')->name('order_tracking');
+    route::get('/wishlist','wishlist')->name('wishlist');
+    route::get('/user-invoice','user_invoice')->name('user_invoice');
 });

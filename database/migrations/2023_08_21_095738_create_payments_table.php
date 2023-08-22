@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('paymentMethod', ['cash_on_delivery','bksh','stripe']);
+            $table->enum('paymentMethod', ['cash','bksh','stripe']);
             $table->double('totalAmount');
             $table->string('trans_id')->nullable();
             $table->string('coupon')->nullable();

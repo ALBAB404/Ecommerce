@@ -44,67 +44,124 @@ class checkoutController extends Controller
             'postalcode' => 'required',
         ]);
 
-
+        //bkash
         if($request->paymentMethod === "bksh"){
             if(!$request->trans_id){
                 return back();
             }else{
-                DB::transaction(function () use ($request) {
-                    //Checkout
+                if($request->totalAmount){
+                    DB::transaction(function () use ($request) {
+                        //Checkout
 
-                   $this->checkout = Checkout::create([
-                       'firstname' => $request->firstname,
-                       'lastname' => $request->lastname,
-                       'address' => $request->address,
-                       'city' => $request->city,
-                       'email' => $request->email,
-                       'state' => $request->state,
-                       'phone' => $request->phone,
-                       'country' => $request->country,
-                       'postalcode' => $request->postalcode,
-                   ]);
-
-                   //Payment
-
-                   $this->payment = Payment::create([
-                       'paymentMethod' => $request->paymentMethod,
-                       'totalAmount' => getAmountWithDiscount(),
-                       'trans_id' => $request->trans_id ? $request->trans_id : null,
-                       'coupon' => $request->discountCouponPrice ? $request->discountCouponPrice : null,
-                       'discount' => $request->totalAmount ? $request->totalAmount : null,
-                   ]);
-
-
-                   //Order
-
-                   $this->order =  Order::create([
-                       'unique_id' => uniqid(),
-                       'checkout_id' => $this->checkout->id,
-                       'payment_id' => $this->payment->id,
-                       'customer_id' => auth('customer')->id(),
-                       'total' => getAmountWithDiscount(),
-                   ]);
-
-                   //OrderItems
-
-                   $cartItems =  cart_products();
-                //    dd($cartItems);
-                   foreach($cartItems as $item){
-                       orderDetails::create([
-                           'order_id' => $this->order->id,
-                           'product_id' => $item->product->id,
-                           'price' => $item->product->productInfo->sell_price,
-                           'quantity' => $item->quantity,
+                       $this->checkout = Checkout::create([
+                           'firstname' => $request->firstname,
+                           'lastname' => $request->lastname,
+                           'address' => $request->address,
+                           'city' => $request->city,
+                           'email' => $request->email,
+                           'state' => $request->state,
+                           'phone' => $request->phone,
+                           'country' => $request->country,
+                           'postalcode' => $request->postalcode,
                        ]);
-                       $item->delete();
+
+                       //Payment
+
+                       $this->payment = Payment::create([
+                           'paymentMethod' => $request->paymentMethod,
+                           'totalAmount' => getAmountWithDiscount(),
+                           'trans_id' => $request->trans_id ? $request->trans_id : null,
+                           'coupon' => $request->discountCouponPrice ? $request->discountCouponPrice : null,
+                           'discount' => $request->totalAmount ? $request->totalAmount : null,
+                       ]);
+
+
+                       //Order
+
+                       $this->order =  Order::create([
+                           'unique_id' => uniqid(),
+                           'checkout_id' => $this->checkout->id,
+                           'payment_id' => $this->payment->id,
+                           'customer_id' => auth('customer')->id(),
+                           'total' => getAmountWithDiscount(),
+                       ]);
+
+                       //OrderItems
+
+                       $cartItems =  cart_products();
+                    //    dd($cartItems);
+                       foreach($cartItems as $item){
+                           orderDetails::create([
+                               'order_id' => $this->order->id,
+                               'product_id' => $item->product->id,
+                               'price' => $item->product->productInfo->sell_price,
+                               'quantity' => $item->quantity,
+                           ]);
+                           $item->delete();
+                       }
+                       // delete coupon
+                       deleteCoupon();
+                   });
                    }
-                   // delete coupon
-                   deleteCoupon();
-               });
             }
             return $this->order;
         }
+        //hand cash
+        if($request->paymentMethod === "cash"){
+                if($request->totalAmount){
+                    DB::transaction(function () use ($request) {
+                        //Checkout
+                       $this->checkout = Checkout::create([
+                           'firstname' => $request->firstname,
+                           'lastname' => $request->lastname,
+                           'address' => $request->address,
+                           'city' => $request->city,
+                           'email' => $request->email,
+                           'state' => $request->state,
+                           'phone' => $request->phone,
+                           'country' => $request->country,
+                           'postalcode' => $request->postalcode,
+                       ]);
 
+                       //Payment
+
+                       $this->payment = Payment::create([
+                           'paymentMethod' => $request->paymentMethod,
+                           'totalAmount' => getAmountWithDiscount(),
+                           'trans_id' => $request->trans_id ? $request->trans_id : null,
+                           'coupon' => $request->discountCouponPrice ? $request->discountCouponPrice : null,
+                           'discount' => $request->totalAmount ? $request->totalAmount : null,
+                       ]);
+
+
+                       //Order
+
+                       $this->order =  Order::create([
+                           'unique_id' => uniqid(),
+                           'checkout_id' => $this->checkout->id,
+                           'payment_id' => $this->payment->id,
+                           'customer_id' => auth('customer')->id(),
+                           'total' => getAmountWithDiscount(),
+                       ]);
+
+                       //OrderItems
+
+                       $cartItems =  cart_products();
+                    //    dd($cartItems);
+                       foreach($cartItems as $item){
+                           orderDetails::create([
+                               'order_id' => $this->order->id,
+                               'product_id' => $item->product->id,
+                               'price' => $item->product->productInfo->sell_price,
+                               'quantity' => $item->quantity,
+                           ]);
+                           $item->delete();
+                       }
+                   });
+
+            }
+            return $this->order;
+        }
 
 
     }

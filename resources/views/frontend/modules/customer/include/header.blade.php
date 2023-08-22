@@ -36,6 +36,8 @@
    <!-- Background css -->
    <link rel="stylesheet" id="bg-switcher-css" href="{{ asset('frontend') }}/assets/css/backgrounds/bg-4.css">
 
+   @stack('css')
+
 </head>
 <body>
    <!-- Header start  -->

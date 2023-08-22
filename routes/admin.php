@@ -9,12 +9,15 @@ use App\Http\Controllers\{
     OfferDealController,
     ProductController,
     SizeController,
-    SubcategoryController
+    SubcategoryController,
+
 };
 use App\Http\Controllers\frontend\{
+    checkoutController,
     singleProductController,
     homeController,
     shopController,
+    CouponController,
 };
 use App\Http\Controllers\ProfileController;
 use App\Models\offerDeal;
@@ -98,6 +101,34 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::delete('/delete/{size}', 'delete')->name('delete');
 
     });
+
+
+    // Coupon
+
+    Route::controller(CouponController::class)->name('coupon.')->prefix('coupon')->group(function(){
+        route::get('/index', 'index')->name('index');
+        route::get('/', 'create')->name('create');
+        route::post('/store', 'store')->name('store');
+        route::get('/{coupon}', 'show')->name('show');
+        route::post('/update/{coupon}', 'update')->name('update');
+        Route::delete('/delete/{coupon}', 'delete')->name('delete');
+        Route::post('/applyCoupon', 'applyCoupon')->name('applyCoupon');
+
+    });
+
+     // CheckOut
+
+        Route::controller(checkoutController::class)->name('checkout.')->prefix('checkout')->group(function(){
+            route::get('/index', 'index')->name('index');
+            route::get('/', 'create')->name('create');
+            route::post('/store', 'store')->name('store');
+            route::get('/{checkout}', 'show')->name('show');
+            route::post('/update/{checkout}', 'update')->name('update');
+            Route::delete('/delete/{checkout}', 'delete')->name('delete');
+            Route::post('/applyCoupon', 'applyCoupon')->name('applyCoupon');
+
+        });
+
 
         // Products
 

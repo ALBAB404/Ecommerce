@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\checkoutController;
 use App\Http\Controllers\frontend\customerAuthController;
 use App\Http\Controllers\globalController;
 use App\Http\Controllers\ProfileController;
@@ -55,4 +56,14 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->middlew
    route::post('/','store');
    route::post('/update/{id}','update');
    route::delete('/destroy/{id}','destroy');
+});
+
+
+// frontend Checkout route
+Route::prefix('checkout')->name('checkout.')->controller(checkoutController::class)->middleware('auth:customer')->group(function () {
+    route::get('/index','index')->name('index');
+//     route::get('/','create')->name('create');
+    route::post('/','store');
+//    route::post('/update/{id}','update');
+//    route::delete('/destroy/{id}','destroy');
 });

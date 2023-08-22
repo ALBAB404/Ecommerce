@@ -109,6 +109,11 @@
                       <div data-i18n="Without menu">Size</div>
                     </a>
                   </li>
+                  <li class="menu-item">
+                    <a href="{{ route('admin.coupon.create') }}" class="menu-link">
+                      <div data-i18n="Without menu">Coupon</div>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <!-- ADmin -->
@@ -116,6 +121,12 @@
                 <a href="{{ route('admin.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
                   <div data-i18n="Analytics">Admin</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="{{ route('admin.index') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Banner</div>
                 </a>
               </li>
             </ul>

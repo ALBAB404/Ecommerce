@@ -57,8 +57,8 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="ec-cart-update-bottom">
-                                                    <a href="#">Continue Shopping</a>
-                                                    <button class="btn btn-primary">Check Out</button>
+                                                    <a href="{{ route('shopPage') }}">Continue Shopping</a>
+                                                    <a href="{{ route('checkout.index') }}" class="btn btn-primary text-light">Check Out</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,44 +78,6 @@
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <h4 class="ec-ship-title">Estimate Shipping</h4>
-                                    <div class="ec-cart-form">
-                                        <p>Enter your destination to get a shipping estimate</p>
-                                        <form action="#" method="post">
-                                            <span class="ec-cart-wrap">
-                                                <label>Country *</label>
-                                                <span class="ec-cart-select-inner">
-                                                    <select name="ec_cart_country" id="ec-cart-select-country"
-                                                        class="ec-cart-select">
-                                                        <option selected="" disabled="">United States</option>
-                                                        <option value="1">Country 1</option>
-                                                        <option value="2">Country 2</option>
-                                                        <option value="3">Country 3</option>
-                                                        <option value="4">Country 4</option>
-                                                        <option value="5">Country 5</option>
-                                                    </select>
-                                                </span>
-                                            </span>
-                                            <span class="ec-cart-wrap">
-                                                <label>State/Province</label>
-                                                <span class="ec-cart-select-inner">
-                                                    <select name="ec_cart_state" id="ec-cart-select-state"
-                                                        class="ec-cart-select">
-                                                        <option selected="" disabled="">Please Select a region, state
-                                                        </option>
-                                                        <option value="1">Region/State 1</option>
-                                                        <option value="2">Region/State 2</option>
-                                                        <option value="3">Region/State 3</option>
-                                                        <option value="4">Region/State 4</option>
-                                                        <option value="5">Region/State 5</option>
-                                                    </select>
-                                                </span>
-                                            </span>
-                                            <span class="ec-cart-wrap">
-                                                <label>Zip/Postal Code</label>
-                                                <input type="text" name="postalcode" placeholder="Zip/Postal Code">
-                                            </span>
-                                        </form>
-                                    </div>
                                 </div>
 
                                 <div class="ec-sb-block-content">
@@ -126,25 +88,26 @@
                                                 <span class="text-right" id="totalPrice">${{ $TotalCount }}.00</span>
                                             </div>
                                             <div>
-                                                <span class="text-left">Delivery Charges</span>
-                                                <span class="text-right">$80.00</span>
+                                                <span class="text-left">Discount</span>
+                                                <span class="text-right">(-)$<span id="discountCouponPrice">00</span>.00</span>
                                             </div>
                                             <div>
                                                 <span class="text-left">Coupan Discount</span>
                                                 <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
                                             </div>
                                             <div class="ec-cart-coupan-content">
-                                                <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                                <div id="errorMessages"></div>
+                                                <form class="ec-cart-coupan-form" id="apply-coupon" name="ec-cart-coupan-form" method="post"
                                                     action="#">
-                                                    <input class="ec-coupan" type="text" required=""
+                                                    <input class="ec-coupan" type="text" required="" id="applyCoupon"
                                                         placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                                    <button class="ec-coupan-btn button btn-primary" type="submit"
+                                                    <button class="ec-coupan-btn button btn-primary" id="apply"  type="submit"
                                                         name="subscribe" value="">Apply</button>
                                                 </form>
                                             </div>
                                             <div class="ec-cart-summary-total">
                                                 <span class="text-left">Total Amount</span>
-                                                <span class="text-right">$80.00</span>
+                                                <span class="text-right">$<span id="totalAmount">00</span>.00</span>
                                             </div>
                                         </div>
 
@@ -567,6 +530,41 @@
         })
 
         // Delete Cart end
+
+
+
+        // apply coupon
+        $('#apply-coupon').on('submit',function(e){
+            e.preventDefault();
+            let Totalcount = 0
+            let applyCoupon = $('#applyCoupon').val()
+            let totalAmount  = $('#totalAmount')
+            let totalPriceText  = $('#totalPrice').text()
+            let totalPrice = parseFloat(totalPriceText.replace('$', ''));
+            axios.post(`/admin/coupon/applyCoupon`,{applyCoupon:applyCoupon}).then((res)=>{
+
+                let oldCouponPriceType =  res.data.type
+                let oldCouponPriceValue =  res.data.value
+                if (oldCouponPriceType === 'flat') {
+                    $('#discountCouponPrice').html(res.data.value)
+                    $('.ec-cart-coupan-content').slideToggle('hide');       // main. js er maddhome ei  code ta niye asha
+                    Totalcount = totalPrice - oldCouponPriceValue
+                    totalAmount.text(Totalcount)
+                }
+                if (oldCouponPriceType === 'percentage') {
+                    let discountAmount = totalPrice * oldCouponPriceValue;
+                    $('#discountCouponPrice').html((oldCouponPriceValue * 100) + '%');
+                    $('.ec-cart-coupan-content').slideToggle('hide');
+                    let Totalcount = totalPrice - discountAmount;
+                    // console.log(Totalcount);
+                        totalAmount.text(Totalcount.toFixed(2));
+                }
+
+                updateTotalPrice();
+
+
+            })
+        })
 
     </script>
 @endpush

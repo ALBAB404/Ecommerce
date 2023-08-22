@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-
+    // protected $with = ["customer","product.product_info"];
     protected $guarded = [];
 
     public function customer()
